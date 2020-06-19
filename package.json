@@ -3,35 +3,36 @@
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
-  "dependencies": {},
+  "repository": "https://github.com/jonsoku2/tamastudy-graphql-part2",
+  "author": "jonsoku2 <whdtjr2792@gmail.com>",
+  "dependencies": {
+    "chalk": "^4.1.0",
+    "clear": "^0.1.0",
+    "figlet": "^1.4.0",
+    "inquirer": "^7.2.0",
+    "shelljs": "^0.8.4"
+  },
   "devDependencies": {
     "husky": "^4.2.5",
     "lint-staged": "^10.2.11",
-    "precise-commits": "^1.0.2",
-    "pretty-quick": "^2.0.1"
+    "prettier": "^2.0.5"
   },
   "scripts": {
-    "prettier:server": "cd server && yarn prettier --write",
+    "cli": "node .",
+    "prettier:server": "cd server && prettier --write",
     "lint:server": "cd server && yarn lint",
-    "prettier:client": "cd client && yarn prettier --write",
+    "prettier:client": "cd client && prettier --write",
     "lint:client": "cd client && yarn lint"
   },
   "husky": {
     "hooks": {
-      "prepare-commit-msg": "./scripts/git-commit-message.sh $HUSKY_GIT_PARAMS",
       "pre-commit": "lint-staged"
     }
   },
   "lint-staged": {
-    "server/src/**/*.{ts,js,graphql}": [
+    "server/src/**/*.{ts,js,graphql,json}": [
       "npm run prettier:server",
-      "npm run lint:server",
-      "git add"
-    ],
-    // "client/src/**/*.{ts,js,graphql,tsx,jsx}": [
-    //   "npm run prettier:client",
-    //   "npm run lint:client",
-    //   "git add"
-    // ]
+      "npm run lint:server"
+    ]
   }
 }

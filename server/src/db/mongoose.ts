@@ -1,13 +1,11 @@
 import { connect } from 'mongoose';
+import env from '../env';
 
 export default () =>
-  connect(
-    'mongodb+srv://whdtjr2792:!canyou12@cluster0-mgk1n.gcp.mongodb.net/typescript-graphql?retryWrites=true&w=majority',
-    {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-      useCreateIndex: true,
-    },
-  ).then((mongoose) => {
+  connect(env.MONGO_URI, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    useCreateIndex: true,
+  }).then((mongoose) => {
     mongoose.connection;
   });

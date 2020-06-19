@@ -1,5 +1,5 @@
-const { errorType } = require('./constants');
+import { errorType, IError } from './constants';
 
-export default (errorName: string) => {
+export default (errorName: keyof typeof errorType): IError => {
   return errorType[errorName];
 };
