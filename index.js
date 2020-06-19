@@ -91,7 +91,8 @@ const init = () => {
 
 fs.readFile(path.resolve(__dirname, '.git', 'HEAD'), 'utf8', function (err, data) {
   if (err) {
-    console.log('git이 등록되어있지 않습니다. ');
+    console.log('git이 등록되어있지 않습니다. git init 명령어가 실행됩니다. ');
+    shell.exec('git init -y');
     process.exit(1);
   }
   CURRENT_BRANCH = data.trim().replace('ref: refs/heads/', '');
