@@ -1,0 +1,20 @@
+type GetAllUsersResponse {
+  result: [User]
+}
+
+type Query {
+  GetAllUsers: GetAllUsersResponse!
+  GetUser(_id: ID!): GetUserResponse
+}
+
+type GetUserResponse {
+  result: User
+}
+
+type User {
+  _id: ID!
+  username: String!
+  email: String!
+  createdAt: String!
+  updatedAt: String
+}

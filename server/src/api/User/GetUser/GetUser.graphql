@@ -1,0 +1,7 @@
+type GetUserResponse {
+  result: User
+}
+
+type Query {
+  GetUser(_id: ID!): GetUserResponse
+}
