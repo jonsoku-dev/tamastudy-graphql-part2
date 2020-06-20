@@ -30,5 +30,5 @@ npm run cli
 
 ## 2번 Project Install 선택
 
-Banya Kim
+Banya
 이종석2
