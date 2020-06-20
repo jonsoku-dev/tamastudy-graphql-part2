@@ -30,4 +30,4 @@ npm run cli
 
 ## 2번 Project Install 선택
 
-이종석
+이종석2
