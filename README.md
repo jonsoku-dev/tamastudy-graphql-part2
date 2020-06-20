@@ -30,4 +30,5 @@ npm run cli
 
 ## 2번 Project Install 선택
 
-조상우
+김반야
+이종석2
