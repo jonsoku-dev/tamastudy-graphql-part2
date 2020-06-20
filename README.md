@@ -29,3 +29,5 @@ npm run cli
 ```
 
 ## 2번 Project Install 선택
+
+이재웅
