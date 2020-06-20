@@ -1,0 +1,2 @@
+SERVER_PORT=5000
+SERVER_MONGO_URI=mongodb+srv://the2792:tamastudy@devconnector-jy5dk.mongodb.net/tamastudy-graphql?retryWrites=true&w=majority
