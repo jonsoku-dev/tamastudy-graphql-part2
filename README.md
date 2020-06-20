@@ -30,4 +30,4 @@ npm run cli
 
 ## 2번 Project Install 선택
 
-조상우
+조상우 수정
