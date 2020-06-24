@@ -57,7 +57,9 @@ const run = () => {
             ])
             .then((answers) => {
               const randomNumber = getRandomInt(0, emoticons.length);
-              shell.exec(`git add . && git commit -am '[${CURRENT_BRANCH}] ${emoticons[randomNumber]} ${answers.msg}' && git push origin ${CURRENT_BRANCH}`);
+              shell.exec(`git add .`);
+              shell.exec(`git commit -m "[${CURRENT_BRANCH}] ${emoticons[randomNumber]} ${answers.msg}"`)
+              shell.exec(`git push origin ${CURRENT_BRANCH}`)
             });
           break;
         case SELECT.GIT_FORCE_PUSH_TO_CURRENT_BRANCH:
@@ -71,7 +73,9 @@ const run = () => {
             ])
             .then((answers) => {
               const randomNumber = getRandomInt(0, emoticons.length);
-              shell.exec(`git add . && git commit -am '[${CURRENT_BRANCH}] ${emoticons[randomNumber]} ${answers.msg}' && git push origin ${CURRENT_BRANCH} --force`);
+              shell.exec(`git add .`);
+              shell.exec(`git commit -m "[${CURRENT_BRANCH}] ${emoticons[randomNumber]} ${answers.msg}"`)
+              shell.exec(`git push origin ${CURRENT_BRANCH} --force`)
             });
           break;
         default:
