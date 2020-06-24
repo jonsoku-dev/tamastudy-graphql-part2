@@ -36,15 +36,21 @@ const run = () => {
       switch (answers.type) {
         case SELECT.PROJECT_START:
           console.log(SELECT.PROJECT_START);
-          shell.exec('cd server && yarn dev');
+          shell.exec('cd server');
+          shell.exec('npm run dev');
           break;
         case SELECT.PROJECT_INSTALL:
           console.log(SELECT.PROJECT_INSTALL);
-          shell.exec('cd server && yarn && yarn dev');
+          shell.exec('cd server');
+          shell.exec('npm install');
+          shell.exec('npm run dev');
           break;
         case SELECT.PROJECT_REFRESH:
           console.log(SELECT.PROJECT_REFRESH);
-          shell.exec('cd server && rm -rf node_modules && yarn && yarn dev');
+          shell.exec('cd server');
+          shell.exec('rm -rf node_modules');
+          shell.exec('npm install');
+          shell.exec('npm run dev');
           break;
         case SELECT.GIT_PUSH_TO_CURRENT_BRANCH:
           inquirer
