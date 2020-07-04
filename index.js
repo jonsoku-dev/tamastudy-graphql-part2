@@ -28,7 +28,7 @@ const run = () => {
       {
         type: 'list',
         name: 'type',
-        message: '간단명령어모음입니다. ',
+        message: '간단명령어모음입니다. 프로젝트 처음 시작 시에는 2번 Install을 먼저 해주세요. ',
         choices: Object.values(SELECT),
       },
     ])
@@ -36,15 +36,18 @@ const run = () => {
       switch (answers.type) {
         case SELECT.PROJECT_START:
           console.log(SELECT.PROJECT_START);
-          shell.exec('cd server && yarn dev');
+          shell.exec('cd server && yarn dev', { async : true });
+          shell.exec('cd client && yarn start', { async : true });
           break;
         case SELECT.PROJECT_INSTALL:
           console.log(SELECT.PROJECT_INSTALL);
-          shell.exec('cd server && yarn && yarn dev');
+          shell.exec('cd server && yarn && yarn dev', { async : true });
+          shell.exec('cd client && yarn && yarn start', { async : true });
           break;
         case SELECT.PROJECT_REFRESH:
           console.log(SELECT.PROJECT_REFRESH);
-          shell.exec('cd server && rm -rf node_modules && yarn && yarn dev');
+          shell.exec('cd server && rm -rf node_modules && yarn && yarn dev', { async : true });
+          shell.exec('cd client && rm -rf node_modules && yarn && yarn start', { async : true });
           break;
         case SELECT.GIT_PUSH_TO_CURRENT_BRANCH:
           inquirer
@@ -57,7 +60,9 @@ const run = () => {
             ])
             .then((answers) => {
               const randomNumber = getRandomInt(0, emoticons.length);
-              shell.exec(`git add . && git commit -am '[${CURRENT_BRANCH}] ${emoticons[randomNumber]} ${answers.msg}' && git push origin ${CURRENT_BRANCH}`);
+              shell.exec(`git add .`);
+              shell.exec(`git commit -m "[${CURRENT_BRANCH}] ${emoticons[randomNumber]} ${answers.msg}"`)
+              shell.exec(`git push origin ${CURRENT_BRANCH}`)
             });
           break;
         case SELECT.GIT_FORCE_PUSH_TO_CURRENT_BRANCH:
@@ -71,7 +76,9 @@ const run = () => {
             ])
             .then((answers) => {
               const randomNumber = getRandomInt(0, emoticons.length);
-              shell.exec(`git add . && git commit -am '[${CURRENT_BRANCH}] ${emoticons[randomNumber]} ${answers.msg}' && git push origin ${CURRENT_BRANCH} --force`);
+              shell.exec(`git add .`);
+              shell.exec(`git commit -m "[${CURRENT_BRANCH}] ${emoticons[randomNumber]} ${answers.msg}"`)
+              shell.exec(`git push origin ${CURRENT_BRANCH} --force`)
             });
           break;
         default:
