@@ -1,0 +1,8 @@
+type Mutation {
+  editUser(id: ID!, input: EditUserInput!): User
+}
+
+input EditUserInput {
+  username: String
+  email: String
+}

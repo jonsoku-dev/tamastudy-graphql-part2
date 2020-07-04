@@ -13,6 +13,6 @@
     "nodemon": "^2.0.4"
   },
   "scripts": {
-    "dev": "nodemon --ext js, graphql --ignore node_modules --watch src ./src/index.js"
+    "dev": "nodemon --ext js,graphql --ignore node_modules --watch src ./src/index.js"
   }
 }
