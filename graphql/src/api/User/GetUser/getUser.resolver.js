@@ -1,9 +1,7 @@
-const users = require('../../../dummy/users');
-
 const resolver = {
   Query: {
-    getUser: (parent, args, context, info) => {
-      return users.find((user) => user.id === args.id);
+    getUser: (parent, args, { models }, info) => {
+      return models.userModel.find((user) => user.id === args.id);
     },
   },
 };

@@ -1,10 +1,8 @@
-const users = require('../../../dummy/users');
-
 const resolver = {
   Mutation: {
-    deleteUser: (parent, { id }, context, info) => {
+    deleteUser: (parent, { id }, { models }, info) => {
       let deletedUser = {};
-      users = users.filter((user) => {
+      models.userModel = models.userModel.filter((user) => {
         if (user.id === id) {
           deletedUser = user;
         }

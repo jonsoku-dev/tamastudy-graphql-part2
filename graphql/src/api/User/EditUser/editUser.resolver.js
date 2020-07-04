@@ -1,10 +1,8 @@
-const users = require('../../../dummy/users');
-
 const resolver = {
   Mutation: {
-    editUser: (parent, { id, input }, context, info) => {
+    editUser: (parent, { id, input }, { models }, info) => {
       let editedUser = {};
-      users = users.map((user) => {
+      models.userModel = models.userModel.map((user) => {
         if (user.id === id) {
           editedUser = {
             ...user,
