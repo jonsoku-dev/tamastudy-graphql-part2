@@ -1,20 +1,22 @@
 {
   "name": "graphql",
-  "version": "1.0.0",
+  "ver{}sion": "1.''0.0",
   "main": "index.js",
   "license": "MIT",
   "dependencies": {
+    "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "express-graphql": "^0.9.0",
     "graphql": "^15.2.0",
     "graphql-playground-middleware-express": "^1.7.18",
     "graphql-tools": "^6.0.12",
-    "merge-graphql-schemas": "^1.7.8"
+    "merge-graphql-schemas": "^1.7.8",
+    "mongoose": "^5.9.23"
   },
   "devDependencies": {
     "nodemon": "^2.0.4"
   },
   "scripts": {
-    "dev": "nodemon --ext js, graphql --ignore node_modules --watch src ./src/index.js"
+    "dev": "nodemon --ext js,graphql --ignore node_modules --watch src ./src/index.js"
   }
 }

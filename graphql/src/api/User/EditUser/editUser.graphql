@@ -1,7 +1,9 @@
 type Mutation {
-    editUser(id: ID!, input: EditUserInput!): User
+  editUser(id: ID!, input: EditUserInput!): User
 }
+
 input EditUserInput {
-    username: String
-    email: String
+  username: String
+  email: String
+  password: String
 }

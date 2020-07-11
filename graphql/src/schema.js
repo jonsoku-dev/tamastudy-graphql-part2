@@ -2,17 +2,17 @@ const path = require('path');
 const { makeExecutableSchema } = require('graphql-tools');
 const { mergeTypes, mergeResolvers, fileLoader } = require('merge-graphql-schemas');
 
-const alltypes = fileLoader(path.join(__dirname, '/api/**/*.graphql'));
+const allTypes = fileLoader(path.join(__dirname, '/api/**/*.graphql'));
 
-const allResolvers = fileLoader(path.join((__dirname, '/api/**/*.resolvers.js')));
+const allResolvers = fileLoader(path.join(__dirname, '/api/**/*.resolver.js'));
 
-const mergedtypes = mergeTypes(alltypes);
+const mergedTypes = mergeTypes(allTypes);
 
 const mergedResolvers = mergeResolvers(allResolvers);
 
 const schema = makeExecutableSchema({
-    typeDefs: mergedtypes,
-    resolvers: mergedResolvers,
+  typeDefs: mergedTypes,
+  resolvers: mergedResolvers,
 });
 
-module.exports = schema
+module.exports = schema;

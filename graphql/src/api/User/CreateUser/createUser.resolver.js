@@ -1,18 +1,18 @@
-const users = require('../../../dummy/users');
-
-let userId = 5;
-
 const resolver = {
   Mutation: {
-    createUser: (parent, { input }, context, info) => {
-      const newUser = {
-        id: String(userId),
-        username: input.username,
-        email: input.email,
-      };
-      users.push(newUser);
-      userId = userId + 1;
-      return newUser;
+    createUser: async (parent, { input }, { models }, info) => {
+      try {
+        const existingUser = await models.userModel.findOne({ email: input.email });
+
+        if (existingUser) {
+          throw Error('email이 존재합니다.');
+        }
+
+        const newUser = await models.userModel.create(input);
+        return newUser;
+      } catch (error) {
+        throw Error(error);
+      }
     },
   },
 };

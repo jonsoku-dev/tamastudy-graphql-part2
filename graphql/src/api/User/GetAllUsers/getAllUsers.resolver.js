@@ -1,9 +1,12 @@
-const users = require('../../../dummy/users');
-
 const resolver = {
   Query: {
-    getAllUsers: (parent, args, { modles }, info) => {
-        return models.userModel;
+    getAllUsers: async (parent, args, { models }, info) => {
+      try {
+        const users = await models.userModel.find();
+        return users;
+      } catch (error) {
+        throw Error(error);
+      }
     },
   },
 };
