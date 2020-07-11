@@ -5,4 +5,5 @@ type Mutation {
 input EditUserInput {
   username: String
   email: String
+  password: String
 }

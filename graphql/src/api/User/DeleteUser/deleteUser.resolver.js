@@ -1,14 +1,17 @@
 const resolver = {
   Mutation: {
-    deleteUser: (parent, { id }, { models }, info) => {
-      let deletedUser = {};
-      models.userModel = models.userModel.filter((user) => {
-        if (user.id === id) {
-          deletedUser = user;
+    deleteUser: async (parent, { id }, { models }, info) => {
+      try {
+        const user = await models.userModel.findByIdAndDelete(id);
+
+        if (!user) {
+          throw Error('유저가 존재하지 않습니다');
         }
-        return user.id !== id;
-      });
-      return deletedUser;
+
+        return user;
+      } catch (error) {
+        throw Error(error);
+      }
     },
   },
 };

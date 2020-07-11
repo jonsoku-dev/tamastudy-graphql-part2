@@ -1,17 +1,19 @@
 const resolver = {
   Mutation: {
-    editUser: (parent, { id, input }, { models }, info) => {
-      let editedUser = {};
-      models.userModel = models.userModel.map((user) => {
-        if (user.id === id) {
-          editedUser = {
-            ...user,
-            ...input,
-          };
+    editUser: async (parent, { id, input }, { models }, info) => {
+      try {
+        const user = await models.userModel.findByIdAndUpdate(id, input, {
+          new: true,
+        });
+
+        if (!user) {
+          throw Error('존재하지 않는 유저입니다. ');
         }
-        return user.id === id ? editedUser : user;
-      });
-      return editedUser;
+
+        return user;
+      } catch (error) {
+        throw Error(error);
+      }
     },
   },
 };
