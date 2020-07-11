@@ -1,0 +1,7 @@
+type Mutation {
+      createUser(input: CreateUserInput!): User
+}
+input CreateUserInput {
+    username: String!
+    email: String!
+}

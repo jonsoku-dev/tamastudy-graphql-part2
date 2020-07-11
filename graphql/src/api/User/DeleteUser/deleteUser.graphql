@@ -1,0 +1,4 @@
+type Mutation {
+    deleteUser(id: ID!): User
+}
+
