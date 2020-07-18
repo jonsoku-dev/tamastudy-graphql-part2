@@ -8,6 +8,8 @@ import schema from './schema';
 import env from './env';
 
 const main = async () => {
+  const app = express();
+
   const server = new ApolloServer({
     schema,
     formatError: (err) => {
@@ -15,8 +17,6 @@ const main = async () => {
       return { message: error.message, statusCode: error.statusCode };
     },
   });
-
-  const app = express();
 
   server.applyMiddleware({ app });
 

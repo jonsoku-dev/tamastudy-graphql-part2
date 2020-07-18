@@ -1,6 +1,6 @@
 const resolver = {
-  Query: {
-    GetUser: () => {
+  Mutation: {
+    Register: () => {
       return 'hello!';
     },
   },
