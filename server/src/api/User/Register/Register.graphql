@@ -1,7 +1,3 @@
-type Query {
-  GetUser: String
-}
-
 type RegisterResponse {
   result: String
 }
@@ -14,12 +10,4 @@ input RegisterInput {
 
 type Mutation {
   Register(input: RegisterInput!): RegisterResponse
-}
-
-type User {
-  _id: ID!
-  username: String!
-  email: String!
-  createdAt: String
-  updatedAt: String
 }

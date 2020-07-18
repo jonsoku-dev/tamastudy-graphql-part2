@@ -31,7 +31,7 @@
     }
   },
   "lint-staged": {
-    "server/src/**/*.{ts,js,graphql,json}": [
+    "server/src/**/*.{ts,js}": [
       "npm run prettier:server",
       "npm run lint:server"
     ]
