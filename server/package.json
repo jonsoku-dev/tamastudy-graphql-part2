@@ -11,7 +11,6 @@
     "watch-ts": "tsc -w",
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "eslint . --ext .ts",
-    "predev": "yarn run types",
     "dev": "cd src && nodemon --exec ts-node server.ts -e ts,graphql",
     "pretypes": "gql-merge --out-file ./src/schema.graphql ./src/api/**/*.graphql",
     "types": "graphql-to-typescript ./src/schema.graphql ./src/types/graph.d.ts"
@@ -19,9 +18,11 @@
   "author": "JONGSEOK LEE",
   "license": "MIT",
   "devDependencies": {
+    "@types/bcryptjs": "^2.4.2",
     "@types/dotenv": "^8.2.0",
     "@types/express": "^4.17.6",
     "@types/graphql": "^14.5.0",
+    "@types/jsonwebtoken": "^8.5.0",
     "@types/mongoose": "^5.7.27",
     "@types/node": "^14.0.13",
     "@typescript-eslint/eslint-plugin": "^3.3.0",
@@ -42,9 +43,11 @@
   "dependencies": {
     "apollo-server-express": "^2.15.0",
     "babel-runtime": "^6.26.0",
+    "bcryptjs": "^2.4.3",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "graphql": "^15.1.0",
+    "jsonwebtoken": "^8.5.1",
     "merge-graphql-schemas": "^1.7.8",
     "mongoose": "^5.9.19",
     "reflect-metadata": "^0.1.13",

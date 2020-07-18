@@ -1,5 +1,23 @@
+type GetUserResponse {
+  result: String
+}
+
 type Query {
-  GetUser: String
+  GetUser: GetUserResponse
+}
+
+type LoginResponse {
+  token: String!
+}
+
+input LoginInput {
+  email: String!
+  password: String!
+}
+
+type Mutation {
+  Login(input: LoginInput!): LoginResponse
+  Register(input: RegisterInput!): RegisterResponse
 }
 
 type RegisterResponse {
@@ -10,10 +28,6 @@ input RegisterInput {
   email: String!
   username: String!
   password: String!
-}
-
-type Mutation {
-  Register(input: RegisterInput!): RegisterResponse
 }
 
 type User {

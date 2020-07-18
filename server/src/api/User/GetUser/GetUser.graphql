@@ -1,3 +1,7 @@
+type GetUserResponse {
+  result: String
+}
+
 type Query {
-  GetUser: String
+  GetUser: GetUserResponse
 }
