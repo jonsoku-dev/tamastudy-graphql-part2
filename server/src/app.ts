@@ -6,9 +6,12 @@ import env from './config/env';
 import schema from './schema';
 import context from './context';
 import formatError from './error/formatError';
+import authorization from './middleware/authorization';
 
 const app = express();
 mongoose();
+
+app.use(authorization);
 
 const server = new ApolloServer({
   schema,

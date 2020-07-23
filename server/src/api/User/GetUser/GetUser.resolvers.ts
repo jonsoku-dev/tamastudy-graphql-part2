@@ -1,29 +1,29 @@
+import { combineResolvers } from 'graphql-resolvers';
 import UserModel from '../../../models/User.model';
 import { errorName } from '../../../error/constants';
 import { GetUserResponse } from '../../../generated/graphql';
+import isAuthenticated from '../../Middleware/isAuthenticated';
 
 const resolver = {
   Query: {
-    GetUser: async (_: any, __: any, context: any, ____: any): Promise<GetUserResponse> => {
-      try {
-        const { email } = context.user;
+    GetUser: combineResolvers(
+      isAuthenticated,
+      async (_: any, __: any, { user }: any, ____: any): Promise<GetUserResponse> => {
+        try {
+          const findUser = await UserModel.findById({ _id: user._id });
 
-        const findUser = await UserModel.findOne({
-          email,
-        });
+          if (!findUser) {
+            throw new Error('유저가 존재하지 않습니다. ');
+          }
 
-        if (!findUser) {
-          console.log('user가 존재하지 않습니다. ');
-          throw new Error(errorName.USER_NOT_EXISTS);
+          return {
+            result: findUser,
+          };
+        } catch (error) {
+          throw new Error(errorName.SERVER_ERROR);
         }
-
-        return {
-          result: findUser,
-        };
-      } catch (error) {
-        throw new Error(errorName.SERVER_ERROR);
-      }
-    },
+      },
+    ),
   },
 };
 

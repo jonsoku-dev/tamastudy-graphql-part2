@@ -4,5 +4,10 @@ import getErrorCode from './getErrorCode';
 
 export default (err: GraphQLError) => {
   const error = getErrorCode(err.message as keyof typeof errorName);
-  return { message: error.message, statusCode: error.statusCode };
+  return {
+    path: err.path,
+    locations: err.locations,
+    message: `${err.originalError?.message}:: ${error.message}`,
+    statusCode: error.statusCode,
+  };
 };

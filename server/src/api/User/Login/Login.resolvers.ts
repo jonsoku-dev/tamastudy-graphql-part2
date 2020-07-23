@@ -1,6 +1,4 @@
 import { MutationLoginArgs, LoginResponse } from '../../../generated/graphql';
-import bcrypt from 'bcryptjs';
-import jwt from 'jsonwebtoken';
 import { errorName } from '../../../error/constants';
 import UserModel from '../../../models/User.model';
 
@@ -13,25 +11,17 @@ const resolver = {
         });
 
         if (!existingUser) {
-          throw new Error(errorName.SERVER_ERROR);
+          throw new Error('유저가 존재하지 않습니다. ');
         }
-
-        // password 검증
-        const isMatched = await bcrypt.compare(input.password, existingUser.password);
+        // Check password
+        const isMatched = existingUser.matchedPassowrd(input.password);
 
         if (!isMatched) {
-          throw new Error(errorName.SERVER_ERROR);
+          throw new Error('비밀번호가 일치하지 않습니다. ');
         }
 
-        const payload = { email: existingUser.email };
-
-        const JWT_SECRET = process.env.SERVER_JWT_SECRET;
-
-        if (!JWT_SECRET) {
-          process.exit(1);
-        }
-
-        const token = jwt.sign(payload, JWT_SECRET);
+        // Genereate token
+        const token = existingUser.generateJWT();
 
         return {
           token,
