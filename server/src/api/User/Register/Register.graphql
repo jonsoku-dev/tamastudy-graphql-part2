@@ -1,5 +1,5 @@
 type RegisterResponse {
-  result: String
+  result: User!
 }
 
 input RegisterInput {
