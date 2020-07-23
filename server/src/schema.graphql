@@ -1,9 +1,9 @@
 type GetUserResponse {
-  result: String
+  result: User!
 }
 
 type Query {
-  GetUser: GetUserResponse
+  GetUser: GetUserResponse!
 }
 
 type LoginResponse {
@@ -21,7 +21,7 @@ type Mutation {
 }
 
 type RegisterResponse {
-  result: String
+  result: User!
 }
 
 input RegisterInput {
@@ -30,10 +30,11 @@ input RegisterInput {
   password: String!
 }
 
-type User {
-  _id: ID!
-  username: String!
-  email: String!
-  createdAt: String
-  updatedAt: String
+type User @entity {
+  _id: String! @id
+  username: String! @column
+  email: String! @column
+  password: String! @column
+  createdAt: String @column
+  updatedAt: String @column
 }

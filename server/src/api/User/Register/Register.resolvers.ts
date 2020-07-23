@@ -1,11 +1,11 @@
 import bcrypt from 'bcryptjs';
-import { RegisterResponse, RegisterMutationArgs } from 'graph';
+import { RegisterResponse, MutationRegisterArgs } from '../../../generated/graphql';
 import { errorName } from '../../../error/constants';
 import UserModel from '../../../models/User.model';
 
 const resolver = {
   Mutation: {
-    Register: async (_: any, { input }: RegisterMutationArgs, __: any, ___: any): Promise<RegisterResponse> => {
+    Register: async (_: any, { input }: MutationRegisterArgs, __: any, ___: any): Promise<RegisterResponse> => {
       try {
         const existingUser = await UserModel.findOne({
           email: input.email,
@@ -26,7 +26,7 @@ const resolver = {
         const newUser = await UserModel.create(cpInput);
 
         return {
-          result: `${newUser.username}님 환영합니다. `,
+          result: newUser,
         };
       } catch (error) {
         console.error(error);

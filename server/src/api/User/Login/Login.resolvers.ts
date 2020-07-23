@@ -1,4 +1,4 @@
-import { LoginMutationArgs, LoginResponse } from 'graph';
+import { MutationLoginArgs, LoginResponse } from '../../../generated/graphql';
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 import { errorName } from '../../../error/constants';
@@ -6,7 +6,7 @@ import UserModel from '../../../models/User.model';
 
 const resolver = {
   Mutation: {
-    Login: async (_: any, { input }: LoginMutationArgs, __: any, ___: any): Promise<LoginResponse> => {
+    Login: async (_: any, { input }: MutationLoginArgs, __: any, ___: any): Promise<LoginResponse> => {
       try {
         const existingUser = await UserModel.findOne({
           email: input.email,
@@ -37,6 +37,7 @@ const resolver = {
           token,
         };
       } catch (error) {
+        console.log(error);
         throw new Error(errorName.SERVER_ERROR);
       }
     },

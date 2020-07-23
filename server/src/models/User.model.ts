@@ -1,12 +1,7 @@
-import mongoose, { Document, Schema } from 'mongoose';
+import mongoose, { Schema, Document } from 'mongoose';
+import { UserDbObject } from '../generated/graphql';
 
-export interface IUser extends Document {
-  email: string;
-  username: string;
-  password: string;
-  createdAt?: string;
-  updatedAt?: string;
-}
+type IUser = UserDbObject & Document;
 
 const userSchema: Schema = new Schema(
   {
