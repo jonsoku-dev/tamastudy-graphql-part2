@@ -12,7 +12,8 @@
     "figlet": "^1.4.0",
     "inquirer": "^7.2.0",
     "shelljs": "^0.8.4",
-    "styled-components": "^5.1.1"
+    "styled-components": "^5.1.1",
+    "styled-reset": "^4.2.1"
   },
   "devDependencies": {
     "@types/styled-components": "^5.1.1",
