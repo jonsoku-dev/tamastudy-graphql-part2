@@ -2,28 +2,31 @@ import React from 'react';
 import styled from 'styled-components';
 import { NavLink, NavLinkProps, useHistory } from 'react-router-dom';
 import { ApolloClient, useApolloClient, useQuery } from '@apollo/client';
-import { IS_LOGGED_IN } from '../../config/client';
+import { IsUserLoggedInDocument } from '../../generated/graphql';
 
 interface Props {}
 
 const Header = (props: Props) => {
   const history = useHistory();
   const client: ApolloClient<any> = useApolloClient();
-  const { data, loading } = useQuery(IS_LOGGED_IN);
+  const { data, loading } = useQuery(IsUserLoggedInDocument);
 
   const onClickLogout = () => {
     localStorage.removeItem('loginToken');
+
     client.writeQuery({
-      query: IS_LOGGED_IN,
+      query: IsUserLoggedInDocument,
       data: {
         isLoggedIn: !!localStorage.getItem('loginToken'),
       },
     });
+
     history.push('/');
   };
 
   if (loading) return null;
 
+  console.log(data);
   const RenderLoggedIn = () => {
     return (
       <ul>
@@ -45,7 +48,7 @@ const Header = (props: Props) => {
     return (
       <ul>
         <li>
-          <a onClick={onClickLogout}>LOGOUT</a>
+          <button onClick={onClickLogout}>LOGOUT</button>
         </li>
       </ul>
     );

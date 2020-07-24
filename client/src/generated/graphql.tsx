@@ -1,6 +1,6 @@
 import gql from 'graphql-tag';
-import * as ApolloReactCommon from '@apollo/react-common';
 import * as React from 'react';
+import * as ApolloReactCommon from '@apollo/react-common';
 import * as ApolloReactComponents from '@apollo/react-components';
 import * as ApolloReactHoc from '@apollo/react-hoc';
 export type Maybe<T> = T | null;
@@ -15,6 +15,7 @@ export type Scalars = {
   Float: number;
 };
 
+
 export type AdditionalEntityFields = {
   path?: Maybe<Scalars['String']>;
   type?: Maybe<Scalars['String']>;
@@ -28,6 +29,7 @@ export type GetUserResponse = {
 export type Query = {
   __typename?: 'Query';
   GetUser: GetUserResponse;
+  isLoggedIn: Scalars['Boolean'];
 };
 
 export type LoginResponse = {
@@ -77,6 +79,14 @@ export type User = {
   updatedAt?: Maybe<Scalars['String']>;
 };
 
+export type IsUserLoggedInQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type IsUserLoggedInQuery = (
+  { __typename?: 'Query' }
+  & Pick<Query, 'isLoggedIn'>
+);
+
 export type LoginMutationVariables = Exact<{
   input: LoginInput;
 }>;
@@ -121,6 +131,31 @@ export type RegisterMutation = (
 );
 
 
+export const IsUserLoggedInDocument = gql`
+    query IsUserLoggedIn {
+  isLoggedIn @client
+}
+    `;
+export type IsUserLoggedInComponentProps = Omit<ApolloReactComponents.QueryComponentOptions<IsUserLoggedInQuery, IsUserLoggedInQueryVariables>, 'query'>;
+
+    export const IsUserLoggedInComponent = (props: IsUserLoggedInComponentProps) => (
+      <ApolloReactComponents.Query<IsUserLoggedInQuery, IsUserLoggedInQueryVariables> query={IsUserLoggedInDocument} {...props} />
+    );
+    
+export type IsUserLoggedInProps<TChildProps = {}, TDataName extends string = 'data'> = {
+      [key in TDataName]: ApolloReactHoc.DataValue<IsUserLoggedInQuery, IsUserLoggedInQueryVariables>
+    } & TChildProps;
+export function withIsUserLoggedIn<TProps, TChildProps = {}, TDataName extends string = 'data'>(operationOptions?: ApolloReactHoc.OperationOption<
+  TProps,
+  IsUserLoggedInQuery,
+  IsUserLoggedInQueryVariables,
+  IsUserLoggedInProps<TChildProps, TDataName>>) {
+    return ApolloReactHoc.withQuery<TProps, IsUserLoggedInQuery, IsUserLoggedInQueryVariables, IsUserLoggedInProps<TChildProps, TDataName>>(IsUserLoggedInDocument, {
+      alias: 'isUserLoggedIn',
+      ...operationOptions
+    });
+};
+export type IsUserLoggedInQueryResult = ApolloReactCommon.QueryResult<IsUserLoggedInQuery, IsUserLoggedInQueryVariables>;
 export const LoginDocument = gql`
     mutation Login($input: LoginInput!) {
   Login(input: $input) {

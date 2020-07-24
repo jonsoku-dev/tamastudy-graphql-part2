@@ -1,9 +1,8 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import { Formik } from 'formik';
-import { ApolloClient, useApolloClient, useMutation, useQuery } from '@apollo/client';
-import { LoginDocument, LoginMutation, MutationLoginArgs } from '../../../generated/graphql';
-import { IS_LOGGED_IN } from '../../../config/client';
+import { ApolloClient, useApolloClient, useMutation } from '@apollo/client';
+import { IsUserLoggedInDocument, LoginDocument, LoginMutation, MutationLoginArgs } from '../../../generated/graphql';
 
 interface Props {}
 
@@ -16,12 +15,12 @@ const initialFormData: IFormData = { email: '', password: '' };
 
 const LoginPresenter = (props: Props) => {
   const client: ApolloClient<any> = useApolloClient();
-  const [LoginMutation, { loading }] = useMutation<LoginMutation, MutationLoginArgs>(LoginDocument, {
+  const [login, { loading }] = useMutation<LoginMutation, MutationLoginArgs>(LoginDocument, {
     onCompleted({ Login }) {
       if (Login?.token) {
         localStorage.setItem('loginToken', Login.token);
         client.writeQuery({
-          query: IS_LOGGED_IN,
+          query: IsUserLoggedInDocument,
           data: {
             isLoggedIn: !!localStorage.getItem('loginToken'),
           },
@@ -30,7 +29,7 @@ const LoginPresenter = (props: Props) => {
         alert('Fail get login token');
       }
     },
-    refetchQueries: [{ query: IS_LOGGED_IN }],
+    refetchQueries: [{ query: IsUserLoggedInDocument }],
     onError(err) {
       console.error(err);
       alert('Login Error');
@@ -53,7 +52,7 @@ const LoginPresenter = (props: Props) => {
           return errors;
         }}
         onSubmit={(values, { setSubmitting }) => {
-          LoginMutation({
+          login({
             variables: {
               input: values,
             },
@@ -89,16 +88,16 @@ export default LoginPresenter;
 
 const Wrapper = styled('div')``;
 
-const Button = styled('div')<{ isBlack: boolean }>`
-  background-color: ${(props) => props.theme.colors.b200};
-  ${(props) =>
-    props.isBlack
-      ? `
-        background-color: black;
-        color:white;
-      `
-      : `
-        background-color: white;
-        color:black;
-      `}
-`;
+// const Button = styled('div')<{ isBlack: boolean }>`
+//   background-color: ${(props) => props.theme.colors.b200};
+//   ${(props) =>
+//     props.isBlack
+//       ? `
+//         background-color: black;
+//         color:white;
+//       `
+//       : `
+//         background-color: white;
+//         color:black;
+//       `}
+// `;

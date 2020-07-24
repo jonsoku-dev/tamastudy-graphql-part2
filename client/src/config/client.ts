@@ -1,7 +1,8 @@
-import { ApolloClient, gql, InMemoryCache, NormalizedCacheObject } from '@apollo/client';
+import { ApolloClient, InMemoryCache, NormalizedCacheObject } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
 import { createHttpLink } from '@apollo/client';
-import { resolvers, typeDefs } from '../resolvers';
+import TYPE_DEFS from '../client/Client.graphql';
+import { IsUserLoggedInDocument } from '../generated/graphql';
 
 const isDev = process.env.NODE_ENV === 'development';
 if (isDev) {
@@ -29,18 +30,12 @@ const cache = new InMemoryCache();
 const client: ApolloClient<NormalizedCacheObject> = new ApolloClient({
   cache,
   link: authLink.concat(httpLink),
-  typeDefs,
-  resolvers,
+  typeDefs: TYPE_DEFS,
+  resolvers: {},
 });
 
-export const IS_LOGGED_IN = gql`
-  query IsUserLoggedIn {
-    isLoggedIn @client
-  }
-`;
-
 cache.writeQuery({
-  query: IS_LOGGED_IN,
+  query: IsUserLoggedInDocument,
   data: {
     isLoggedIn: !!localStorage.getItem('loginToken'),
   },
