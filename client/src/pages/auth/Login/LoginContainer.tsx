@@ -1,6 +1,7 @@
 import React from 'react';
 import { useMutation } from '@apollo/client';
-import { LoginDocument, LoginInput, LoginResponse, LoginMutation, LoginMutationVariables } from '../../../generated/graphql';
+import { LoginDocument, LoginMutation, LoginMutationVariables } from '../../../generated/graphql';
+import LoginPresenter from './LoginPresenter';
 
 interface Props {}
 
@@ -24,6 +25,7 @@ const LoginContainer = (props: Props) => {
 
   return (
     <div>
+      <LoginPresenter />
       <button onClick={() => loginMutation()}>Login~</button>
     </div>
   );

@@ -5,13 +5,17 @@ import client from './config/client';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
+import { ThemeProvider } from 'styled-components';
+import theme from './theme';
 
 ReactDOM.render(
-  <ApolloProvider client={client}>
-    <React.StrictMode>
-      <App />
-    </React.StrictMode>
-  </ApolloProvider>,
+  <ThemeProvider theme={theme}>
+    <ApolloProvider client={client}>
+      <React.StrictMode>
+        <App />
+      </React.StrictMode>
+    </ApolloProvider>
+  </ThemeProvider>,
   document.getElementById('root'),
 );
 

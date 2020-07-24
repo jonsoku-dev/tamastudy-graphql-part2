@@ -5,7 +5,7 @@ import { GetUserDocument } from '../../../generated/graphql';
 interface Props {}
 
 const ProfileContainer = (props: Props) => {
-  const { loading, error, data } = useQuery(GetUserDocument);
+  const { data } = useQuery(GetUserDocument);
   console.log(data);
   return <div>ProfileContainer</div>;
 };
