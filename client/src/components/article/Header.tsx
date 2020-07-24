@@ -1,29 +1,65 @@
 import React from 'react';
 import styled from 'styled-components';
-import { NavLink, NavLinkProps } from 'react-router-dom';
+import { NavLink, NavLinkProps, useHistory } from 'react-router-dom';
+import { ApolloClient, useApolloClient, useQuery } from '@apollo/client';
+import { IsUserLoggedInDocument } from '../../generated/graphql';
 
 interface Props {}
 
 const Header = (props: Props) => {
+  const history = useHistory();
+  const client: ApolloClient<any> = useApolloClient();
+  const { data, loading } = useQuery(IsUserLoggedInDocument);
+
+  const onClickLogout = () => {
+    localStorage.removeItem('loginToken');
+
+    client.writeQuery({
+      query: IsUserLoggedInDocument,
+      data: {
+        isLoggedIn: !!localStorage.getItem('loginToken'),
+      },
+    });
+
+    history.push('/');
+  };
+
+  if (loading) return null;
+
+  console.log(data);
+  const RenderLoggedIn = () => {
+    return (
+      <ul>
+        <li>
+          <StyledLink exact to={'/login'}>
+            LOGIN
+          </StyledLink>
+        </li>
+        <li>
+          <StyledLink exact to={'/register'}>
+            REGISTER
+          </StyledLink>
+        </li>
+      </ul>
+    );
+  };
+
+  const RenderLoggedOut = () => {
+    return (
+      <ul>
+        <li>
+          <button onClick={onClickLogout}>LOGOUT</button>
+        </li>
+      </ul>
+    );
+  };
+
   return (
     <Wrapper className="container">
       <LogoBox>
         <img src="https://i.dlpng.com/static/png/6637570_preview.png" alt="" />
       </LogoBox>
-      <AuthNavBox>
-        <ul>
-          <li>
-            <StyledLink exact to={'/login'}>
-              LOGIN
-            </StyledLink>
-          </li>
-          <li>
-            <StyledLink exact to={'/register'}>
-              REGISTER
-            </StyledLink>
-          </li>
-        </ul>
-      </AuthNavBox>
+      <AuthNavBox>{data.isLoggedIn ? <RenderLoggedOut /> : <RenderLoggedIn />}</AuthNavBox>
     </Wrapper>
   );
 };

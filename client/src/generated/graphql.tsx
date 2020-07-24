@@ -1,6 +1,6 @@
 import gql from 'graphql-tag';
-import * as ApolloReactCommon from '@apollo/react-common';
 import * as React from 'react';
+import * as ApolloReactCommon from '@apollo/react-common';
 import * as ApolloReactComponents from '@apollo/react-components';
 import * as ApolloReactHoc from '@apollo/react-hoc';
 export type Maybe<T> = T | null;
@@ -15,6 +15,7 @@ export type Scalars = {
   Float: number;
 };
 
+
 export type AdditionalEntityFields = {
   path?: Maybe<Scalars['String']>;
   type?: Maybe<Scalars['String']>;
@@ -28,6 +29,7 @@ export type GetUserResponse = {
 export type Query = {
   __typename?: 'Query';
   GetUser: GetUserResponse;
+  isLoggedIn: Scalars['Boolean'];
 };
 
 export type LoginResponse = {
@@ -77,6 +79,14 @@ export type User = {
   updatedAt?: Maybe<Scalars['String']>;
 };
 
+export type IsUserLoggedInQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type IsUserLoggedInQuery = (
+  { __typename?: 'Query' }
+  & Pick<Query, 'isLoggedIn'>
+);
+
 export type LoginMutationVariables = Exact<{
   input: LoginInput;
 }>;
@@ -104,7 +114,48 @@ export type GetUserQuery = (
   ) }
 );
 
+export type RegisterMutationVariables = Exact<{
+  input: RegisterInput;
+}>;
 
+
+export type RegisterMutation = (
+  { __typename?: 'Mutation' }
+  & { Register?: Maybe<(
+    { __typename?: 'RegisterResponse' }
+    & { result: (
+      { __typename?: 'User' }
+      & Pick<User, 'username'>
+    ) }
+  )> }
+);
+
+
+export const IsUserLoggedInDocument = gql`
+    query IsUserLoggedIn {
+  isLoggedIn @client
+}
+    `;
+export type IsUserLoggedInComponentProps = Omit<ApolloReactComponents.QueryComponentOptions<IsUserLoggedInQuery, IsUserLoggedInQueryVariables>, 'query'>;
+
+    export const IsUserLoggedInComponent = (props: IsUserLoggedInComponentProps) => (
+      <ApolloReactComponents.Query<IsUserLoggedInQuery, IsUserLoggedInQueryVariables> query={IsUserLoggedInDocument} {...props} />
+    );
+    
+export type IsUserLoggedInProps<TChildProps = {}, TDataName extends string = 'data'> = {
+      [key in TDataName]: ApolloReactHoc.DataValue<IsUserLoggedInQuery, IsUserLoggedInQueryVariables>
+    } & TChildProps;
+export function withIsUserLoggedIn<TProps, TChildProps = {}, TDataName extends string = 'data'>(operationOptions?: ApolloReactHoc.OperationOption<
+  TProps,
+  IsUserLoggedInQuery,
+  IsUserLoggedInQueryVariables,
+  IsUserLoggedInProps<TChildProps, TDataName>>) {
+    return ApolloReactHoc.withQuery<TProps, IsUserLoggedInQuery, IsUserLoggedInQueryVariables, IsUserLoggedInProps<TChildProps, TDataName>>(IsUserLoggedInDocument, {
+      alias: 'isUserLoggedIn',
+      ...operationOptions
+    });
+};
+export type IsUserLoggedInQueryResult = ApolloReactCommon.QueryResult<IsUserLoggedInQuery, IsUserLoggedInQueryVariables>;
 export const LoginDocument = gql`
     mutation Login($input: LoginInput!) {
   Login(input: $input) {
@@ -166,3 +217,34 @@ export function withGetUser<TProps, TChildProps = {}, TDataName extends string =
     });
 };
 export type GetUserQueryResult = ApolloReactCommon.QueryResult<GetUserQuery, GetUserQueryVariables>;
+export const RegisterDocument = gql`
+    mutation Register($input: RegisterInput!) {
+  Register(input: $input) {
+    result {
+      username
+    }
+  }
+}
+    `;
+export type RegisterMutationFn = ApolloReactCommon.MutationFunction<RegisterMutation, RegisterMutationVariables>;
+export type RegisterComponentProps = Omit<ApolloReactComponents.MutationComponentOptions<RegisterMutation, RegisterMutationVariables>, 'mutation'>;
+
+    export const RegisterComponent = (props: RegisterComponentProps) => (
+      <ApolloReactComponents.Mutation<RegisterMutation, RegisterMutationVariables> mutation={RegisterDocument} {...props} />
+    );
+    
+export type RegisterProps<TChildProps = {}, TDataName extends string = 'mutate'> = {
+      [key in TDataName]: ApolloReactCommon.MutationFunction<RegisterMutation, RegisterMutationVariables>
+    } & TChildProps;
+export function withRegister<TProps, TChildProps = {}, TDataName extends string = 'mutate'>(operationOptions?: ApolloReactHoc.OperationOption<
+  TProps,
+  RegisterMutation,
+  RegisterMutationVariables,
+  RegisterProps<TChildProps, TDataName>>) {
+    return ApolloReactHoc.withMutation<TProps, RegisterMutation, RegisterMutationVariables, RegisterProps<TChildProps, TDataName>>(RegisterDocument, {
+      alias: 'register',
+      ...operationOptions
+    });
+};
+export type RegisterMutationResult = ApolloReactCommon.MutationResult<RegisterMutation>;
+export type RegisterMutationOptions = ApolloReactCommon.BaseMutationOptions<RegisterMutation, RegisterMutationVariables>;
