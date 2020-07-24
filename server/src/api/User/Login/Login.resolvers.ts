@@ -5,6 +5,7 @@ import UserModel from '../../../models/User.model';
 const resolver = {
   Mutation: {
     Login: async (_: any, { input }: MutationLoginArgs, __: any, ___: any): Promise<LoginResponse> => {
+      console.log(input);
       try {
         const existingUser = await UserModel.findOne({
           email: input.email,

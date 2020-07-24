@@ -10,7 +10,7 @@ type CustomUser = {
   matchedPassowrd: (inputPassword: string) => boolean;
 };
 
-type IUser = CustomUser & UserDbObject & Document;
+export type IUser = CustomUser & UserDbObject & Document;
 
 const userSchema = new Schema(
   {
