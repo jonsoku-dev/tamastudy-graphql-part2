@@ -6,7 +6,7 @@ import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 import { ThemeProvider } from 'styled-components';
-import theme from './theme';
+import theme from './css/theme';
 
 ReactDOM.render(
   <ThemeProvider theme={theme}>
