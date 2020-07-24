@@ -104,6 +104,22 @@ export type GetUserQuery = (
   ) }
 );
 
+export type RegisterMutationVariables = Exact<{
+  input: RegisterInput;
+}>;
+
+
+export type RegisterMutation = (
+  { __typename?: 'Mutation' }
+  & { Register?: Maybe<(
+    { __typename?: 'RegisterResponse' }
+    & { result: (
+      { __typename?: 'User' }
+      & Pick<User, 'username'>
+    ) }
+  )> }
+);
+
 
 export const LoginDocument = gql`
     mutation Login($input: LoginInput!) {
@@ -166,3 +182,34 @@ export function withGetUser<TProps, TChildProps = {}, TDataName extends string =
     });
 };
 export type GetUserQueryResult = ApolloReactCommon.QueryResult<GetUserQuery, GetUserQueryVariables>;
+export const RegisterDocument = gql`
+    mutation Register($input: RegisterInput!) {
+  Register(input: $input) {
+    result {
+      username
+    }
+  }
+}
+    `;
+export type RegisterMutationFn = ApolloReactCommon.MutationFunction<RegisterMutation, RegisterMutationVariables>;
+export type RegisterComponentProps = Omit<ApolloReactComponents.MutationComponentOptions<RegisterMutation, RegisterMutationVariables>, 'mutation'>;
+
+    export const RegisterComponent = (props: RegisterComponentProps) => (
+      <ApolloReactComponents.Mutation<RegisterMutation, RegisterMutationVariables> mutation={RegisterDocument} {...props} />
+    );
+    
+export type RegisterProps<TChildProps = {}, TDataName extends string = 'mutate'> = {
+      [key in TDataName]: ApolloReactCommon.MutationFunction<RegisterMutation, RegisterMutationVariables>
+    } & TChildProps;
+export function withRegister<TProps, TChildProps = {}, TDataName extends string = 'mutate'>(operationOptions?: ApolloReactHoc.OperationOption<
+  TProps,
+  RegisterMutation,
+  RegisterMutationVariables,
+  RegisterProps<TChildProps, TDataName>>) {
+    return ApolloReactHoc.withMutation<TProps, RegisterMutation, RegisterMutationVariables, RegisterProps<TChildProps, TDataName>>(RegisterDocument, {
+      alias: 'register',
+      ...operationOptions
+    });
+};
+export type RegisterMutationResult = ApolloReactCommon.MutationResult<RegisterMutation>;
+export type RegisterMutationOptions = ApolloReactCommon.BaseMutationOptions<RegisterMutation, RegisterMutationVariables>;

@@ -23,12 +23,7 @@ const LoginContainer = (props: Props) => {
     },
   });
 
-  return (
-    <div>
-      <LoginPresenter />
-      <button onClick={() => loginMutation()}>Login~</button>
-    </div>
-  );
+  return <LoginPresenter />;
 };
 
 export default LoginContainer;
