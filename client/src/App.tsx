@@ -1,11 +1,14 @@
 import React from 'react';
+import AppRouter from './AppRouter';
 
-interface Props {
-  test?: string;
-}
+interface Props {}
 
 const App = (props: Props) => {
-  return <div>1234</div>;
+  return (
+    <div>
+      <AppRouter />
+    </div>
+  );
 };
 
 export default App;

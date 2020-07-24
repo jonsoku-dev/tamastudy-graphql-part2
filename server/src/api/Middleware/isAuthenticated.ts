@@ -1,7 +1,8 @@
 import { skip } from 'graphql-resolvers';
 import { errorName } from '../../error/constants';
+import { IContext } from '../../context';
 
-export default (_: any, __: any, { user }: any) => {
+export default (_: any, __: any, { user }: IContext) => {
   console.info('====================================> start of isAuthenticated resolver middleware');
   if (user) {
     skip;

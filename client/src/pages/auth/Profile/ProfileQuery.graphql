@@ -1,0 +1,10 @@
+query GetUser {
+  GetUser {
+    result {
+      username
+      email
+      createdAt
+      updatedAt
+    }
+  }
+}
