@@ -1,9 +1,10 @@
-type GetUserResponse {
-  result: User!
+type Query {
+  Foo(id: String!): String
+  GetUser: GetUserResponse!
 }
 
-type Query {
-  GetUser: GetUserResponse!
+type GetUserResponse {
+  result: User!
 }
 
 type LoginResponse {
