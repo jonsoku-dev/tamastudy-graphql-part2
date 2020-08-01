@@ -12,14 +12,19 @@ export type Scalars = {
   Float: number;
 };
 
+export type Query = {
+  __typename?: 'Query';
+  Foo?: Maybe<Scalars['String']>;
+  GetUser: GetUserResponse;
+};
+
+export type QueryFooArgs = {
+  id: Scalars['String'];
+};
+
 export type GetUserResponse = {
   __typename?: 'GetUserResponse';
   result: User;
-};
-
-export type Query = {
-  __typename?: 'Query';
-  GetUser: GetUserResponse;
 };
 
 export type LoginResponse = {
@@ -131,10 +136,10 @@ export type DirectiveResolverFn<TResult = {}, TParent = {}, TContext = {}, TArgs
 
 /** Mapping between all available schema types and the resolvers types */
 export type ResolversTypes = {
-  GetUserResponse: ResolverTypeWrapper<GetUserResponse>;
   Query: ResolverTypeWrapper<{}>;
-  LoginResponse: ResolverTypeWrapper<LoginResponse>;
   String: ResolverTypeWrapper<Scalars['String']>;
+  GetUserResponse: ResolverTypeWrapper<GetUserResponse>;
+  LoginResponse: ResolverTypeWrapper<LoginResponse>;
   LoginInput: LoginInput;
   Mutation: ResolverTypeWrapper<{}>;
   RegisterResponse: ResolverTypeWrapper<RegisterResponse>;
@@ -146,10 +151,10 @@ export type ResolversTypes = {
 
 /** Mapping between all available schema types and the resolvers parents */
 export type ResolversParentTypes = {
-  GetUserResponse: GetUserResponse;
   Query: {};
-  LoginResponse: LoginResponse;
   String: Scalars['String'];
+  GetUserResponse: GetUserResponse;
+  LoginResponse: LoginResponse;
   LoginInput: LoginInput;
   Mutation: {};
   RegisterResponse: RegisterResponse;
@@ -191,13 +196,14 @@ export type MapDirectiveArgs = { path: Scalars['String'] };
 
 export type MapDirectiveResolver<Result, Parent, ContextType = any, Args = MapDirectiveArgs> = DirectiveResolverFn<Result, Parent, ContextType, Args>;
 
+export type QueryResolvers<ContextType = any, ParentType extends ResolversParentTypes['Query'] = ResolversParentTypes['Query']> = {
+  Foo?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType, RequireFields<QueryFooArgs, 'id'>>;
+  GetUser?: Resolver<ResolversTypes['GetUserResponse'], ParentType, ContextType>;
+};
+
 export type GetUserResponseResolvers<ContextType = any, ParentType extends ResolversParentTypes['GetUserResponse'] = ResolversParentTypes['GetUserResponse']> = {
   result?: Resolver<ResolversTypes['User'], ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType>;
-};
-
-export type QueryResolvers<ContextType = any, ParentType extends ResolversParentTypes['Query'] = ResolversParentTypes['Query']> = {
-  GetUser?: Resolver<ResolversTypes['GetUserResponse'], ParentType, ContextType>;
 };
 
 export type LoginResponseResolvers<ContextType = any, ParentType extends ResolversParentTypes['LoginResponse'] = ResolversParentTypes['LoginResponse']> = {
@@ -226,8 +232,8 @@ export type UserResolvers<ContextType = any, ParentType extends ResolversParentT
 };
 
 export type Resolvers<ContextType = any> = {
-  GetUserResponse?: GetUserResponseResolvers<ContextType>;
   Query?: QueryResolvers<ContextType>;
+  GetUserResponse?: GetUserResponseResolvers<ContextType>;
   LoginResponse?: LoginResponseResolvers<ContextType>;
   Mutation?: MutationResolvers<ContextType>;
   RegisterResponse?: RegisterResponseResolvers<ContextType>;
