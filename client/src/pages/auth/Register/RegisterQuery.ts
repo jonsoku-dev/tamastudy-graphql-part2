@@ -6,6 +6,8 @@ export default gql`
       result {
         email
         username
+        createdAt
+        updatedAt
       }
     }
   }

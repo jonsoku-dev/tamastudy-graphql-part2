@@ -17,13 +17,9 @@ const RegisterContainer = (props: Props) => {
   const [formData, setFormData] = useState(initialFormData);
 
   const [registerFn, { loading, error }] = useMutation(REGISTER, {
-    onCompleted({ Login }) {
-      // 1. 토큰을 받아온다.
-
-      // 2. 받아온 토큰을 로컬스토리지/세션/쿠키
-
-      // 3. apollo cache 저장소에 작성한다.
-      history.push('/');
+    onCompleted({ Register }) {
+      alert(`${Register.result.email}님 환영합니다. 로그인해주세요. `)
+      history.push('/login');
     },
     onError(err) {
       console.log(err, 'from onError');
