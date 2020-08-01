@@ -20,11 +20,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f64a5511-19da-4b94-97b2-0ed4bb1d9663" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/client/src/pages/auth/Login/LoginQuery.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/graphql.schema.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/generated/graphql.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/pages/auth/Login/Login.graphql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/pages/auth/Register/Register.graphql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/client/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/pages/auth/Login/LoginContainer.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/pages/auth/Login/LoginContainer.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/pages/auth/Login/LoginPresenter.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/pages/auth/Login/LoginPresenter.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/pages/auth/Login/LoginQuery.ts" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/pages/auth/Register/RegisterContainer.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/pages/auth/Register/RegisterContainer.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/pages/auth/Register/RegisterQuery.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/pages/auth/Register/RegisterQuery.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/pages/auth/Register/RegisterQuery.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/client/yarn.lock" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -42,12 +49,15 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectId" id="1fSSwghqDJMzXnTKqolqsgbkdxC" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
@@ -71,7 +81,7 @@
       <option name="presentableId" value="Default" />
       <updated>1596210240530</updated>
       <workItem from="1596210241644" duration="802000" />
-      <workItem from="1596232544120" duration="4643000" />
+      <workItem from="1596232544120" duration="7584000" />
     </task>
     <servers />
   </component>
@@ -89,6 +99,9 @@
       </map>
     </option>
     <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
   </component>
   <component name="WindowStateProjectService">
     <state width="1636" height="307" key="GridCell.Tab.0.bottom" timestamp="1596210531344">

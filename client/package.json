@@ -4,6 +4,9 @@
   "private": true,
   "dependencies": {
     "@apollo/client": "^3.0.2",
+    "@apollo/react-common": "^3.1.4",
+    "@apollo/react-components": "^4.0.0",
+    "@apollo/react-hoc": "^4.0.0",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
@@ -22,7 +25,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "codegen": "graphql-codegen --config codegen.yml"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -40,6 +44,15 @@
     ]
   },
   "devDependencies": {
+    "@graphql-codegen/cli": "1.17.6",
+    "@graphql-codegen/fragment-matcher": "1.17.6",
+    "@graphql-codegen/introspection": "1.17.6",
+    "@graphql-codegen/typescript": "^1.17.6",
+    "@graphql-codegen/typescript-document-nodes": "1.17.6",
+    "@graphql-codegen/typescript-graphql-files-modules": "1.17.6",
+    "@graphql-codegen/typescript-operations": "1.17.6",
+    "@graphql-codegen/typescript-react-apollo": "1.17.6",
+    "@types/react-router-dom": "^5.1.5",
     "@typescript-eslint/eslint-plugin": "^3.4.0",
     "@typescript-eslint/parser": "^3.4.0"
   }

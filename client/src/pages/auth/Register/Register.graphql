@@ -1,0 +1,10 @@
+mutation Register($input: RegisterInput!) {
+    Register(input: $input) {
+        result {
+            email
+            username
+            createdAt
+            updatedAt
+        }
+    }
+}

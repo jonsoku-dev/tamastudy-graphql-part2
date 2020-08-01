@@ -1,8 +1,8 @@
 import React, { useState, FormEvent, ChangeEvent } from 'react';
-import REGISTER from './RegisterQuery';
 import RegisterPresenter from './RegisterPresenter';
 import { useMutation } from '@apollo/client';
 import { useHistory } from 'react-router-dom';
+import { RegisterMutation, RegisterMutationVariables, RegisterDocument } from '../../../generated/graphql';
 
 interface Props {}
 
@@ -16,8 +16,11 @@ const RegisterContainer = (props: Props) => {
   const history = useHistory();
   const [formData, setFormData] = useState(initialFormData);
 
-  const [registerFn, { loading, error }] = useMutation(REGISTER, {
+  const [registerFn, { loading, error }] = useMutation<RegisterMutation, RegisterMutationVariables>(RegisterDocument, {
     onCompleted({ Register }) {
+      if(!Register){
+        return
+      }
       alert(`${Register.result.email}님 환영합니다. 로그인해주세요. `)
       history.push('/login');
     },
