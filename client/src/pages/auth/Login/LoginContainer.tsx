@@ -1,8 +1,8 @@
 import React, { useState, FormEvent, ChangeEvent } from 'react';
 import LoginPresenter from './LoginPresenter';
 import { useHistory } from 'react-router-dom';
-import { useMutation } from '@apollo/client';
-import { LoginDocument, LoginMutationVariables, LoginMutation } from '../../../generated/graphql';
+import { useMutation, useApolloClient } from '@apollo/client';
+import { LoginDocument, LoginMutationVariables, LoginMutation, IsLoggedInDocument } from '../../../generated/graphql';
 
 interface Props {}
 
@@ -12,6 +12,7 @@ const initialFormData = {
 };
 
 const LoginContainer = (props: Props) => {
+  const client = useApolloClient();
   const history = useHistory();
   const [formData, setFormData] = useState(initialFormData);
 
@@ -21,6 +22,14 @@ const LoginContainer = (props: Props) => {
         return;
       }
       window.sessionStorage.setItem('token', Login.token);
+
+      client.writeQuery({
+        query: IsLoggedInDocument,
+        data: {
+          isLoggedIn: !!window.sessionStorage.getItem('token'),
+        },
+      });
+
       history.push('/');
     },
     onError(err) {

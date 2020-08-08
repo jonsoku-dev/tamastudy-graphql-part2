@@ -55,5 +55,6 @@
     "@types/react-router-dom": "^5.1.5",
     "@typescript-eslint/eslint-plugin": "^3.4.0",
     "@typescript-eslint/parser": "^3.4.0"
-  }
+  },
+  "proxy" : "http://localhost:5000"
 }
