@@ -1,0 +1,7 @@
+query GetUser{
+    GetUser {
+        result {
+            email
+        }
+    }
+}

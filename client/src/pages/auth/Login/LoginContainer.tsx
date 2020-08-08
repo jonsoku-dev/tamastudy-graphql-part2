@@ -22,19 +22,23 @@ const LoginContainer = (props: Props) => {
         return;
       }
       window.sessionStorage.setItem('token', Login.token);
-
       client.writeQuery({
         query: IsLoggedInDocument,
         data: {
-          isLoggedIn: !!window.sessionStorage.getItem('token'),
+          isLoggedIn: true,
         },
       });
 
       history.push('/');
     },
     onError(err) {
-      alert('error !');
       window.sessionStorage.removeItem('token');
+      client.writeQuery({
+        query: IsLoggedInDocument,
+        data: {
+          isLoggedIn: false,
+        },
+      });
     },
   });
 
@@ -55,10 +59,11 @@ const LoginContainer = (props: Props) => {
   };
 
   if (loading) return <div>로그인 중입니다....</div>;
-  if (error) return <div>로그인 중에 에러가 발생하였습니다. </div>;
+
   return (
     <div>
       <LoginPresenter onSubmit={onSubmit} onChange={onChange} formData={formData} />
+      {error && <div>로그인 중에 에러가 발생하였습니다. </div>}
     </div>
   );
 };

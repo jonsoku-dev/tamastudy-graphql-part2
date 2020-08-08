@@ -85,6 +85,20 @@ export type User = {
   updatedAt?: Maybe<Scalars['String']>;
 };
 
+export type GetUserQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type GetUserQuery = (
+  { __typename?: 'Query' }
+  & { GetUser: (
+    { __typename?: 'GetUserResponse' }
+    & { result: (
+      { __typename?: 'User' }
+      & Pick<User, 'email'>
+    ) }
+  ) }
+);
+
 export type IsLoggedInQueryVariables = Exact<{ [key: string]: never; }>;
 
 
@@ -123,6 +137,35 @@ export type RegisterMutation = (
 );
 
 
+export const GetUserDocument = gql`
+    query GetUser {
+  GetUser {
+    result {
+      email
+    }
+  }
+}
+    `;
+export type GetUserComponentProps = Omit<ApolloReactComponents.QueryComponentOptions<GetUserQuery, GetUserQueryVariables>, 'query'>;
+
+    export const GetUserComponent = (props: GetUserComponentProps) => (
+      <ApolloReactComponents.Query<GetUserQuery, GetUserQueryVariables> query={GetUserDocument} {...props} />
+    );
+    
+export type GetUserProps<TChildProps = {}, TDataName extends string = 'data'> = {
+      [key in TDataName]: ApolloReactHoc.DataValue<GetUserQuery, GetUserQueryVariables>
+    } & TChildProps;
+export function withGetUser<TProps, TChildProps = {}, TDataName extends string = 'data'>(operationOptions?: ApolloReactHoc.OperationOption<
+  TProps,
+  GetUserQuery,
+  GetUserQueryVariables,
+  GetUserProps<TChildProps, TDataName>>) {
+    return ApolloReactHoc.withQuery<TProps, GetUserQuery, GetUserQueryVariables, GetUserProps<TChildProps, TDataName>>(GetUserDocument, {
+      alias: 'getUser',
+      ...operationOptions
+    });
+};
+export type GetUserQueryResult = ApolloReactCommon.QueryResult<GetUserQuery, GetUserQueryVariables>;
 export const IsLoggedInDocument = gql`
     query IsLoggedIn {
   isLoggedIn @client
