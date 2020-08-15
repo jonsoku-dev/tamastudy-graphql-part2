@@ -9,9 +9,14 @@ input CreatePostInput {
 
 type Mutation {
   CreatePost(input: CreatePostInput!): CreatePostResponse
+  DeletePost(postId: String!): DeletePostResponse
   EditPost(postId: String!, input: EditPostInput!): EditPostResponse
   Login(input: LoginInput!): LoginResponse
   Register(input: RegisterInput!): RegisterResponse
+}
+
+type DeletePostResponse {
+  result: Post!
 }
 
 type EditPostResponse {

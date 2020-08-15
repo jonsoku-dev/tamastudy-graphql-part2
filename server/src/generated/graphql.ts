@@ -25,6 +25,7 @@ export type CreatePostInput = {
 export type Mutation = {
   __typename?: 'Mutation';
   CreatePost?: Maybe<CreatePostResponse>;
+  DeletePost?: Maybe<DeletePostResponse>;
   EditPost?: Maybe<EditPostResponse>;
   Login?: Maybe<LoginResponse>;
   Register?: Maybe<RegisterResponse>;
@@ -32,6 +33,10 @@ export type Mutation = {
 
 export type MutationCreatePostArgs = {
   input: CreatePostInput;
+};
+
+export type MutationDeletePostArgs = {
+  postId: Scalars['String'];
 };
 
 export type MutationEditPostArgs = {
@@ -45,6 +50,11 @@ export type MutationLoginArgs = {
 
 export type MutationRegisterArgs = {
   input: RegisterInput;
+};
+
+export type DeletePostResponse = {
+  __typename?: 'DeletePostResponse';
+  result: Post;
 };
 
 export type EditPostResponse = {
@@ -204,6 +214,7 @@ export type ResolversTypes = {
   CreatePostInput: CreatePostInput;
   String: ResolverTypeWrapper<Scalars['String']>;
   Mutation: ResolverTypeWrapper<{}>;
+  DeletePostResponse: ResolverTypeWrapper<DeletePostResponse>;
   EditPostResponse: ResolverTypeWrapper<EditPostResponse>;
   EditPostInput: EditPostInput;
   GetPostResponse: ResolverTypeWrapper<GetPostResponse>;
@@ -227,6 +238,7 @@ export type ResolversParentTypes = {
   CreatePostInput: CreatePostInput;
   String: Scalars['String'];
   Mutation: {};
+  DeletePostResponse: DeletePostResponse;
   EditPostResponse: EditPostResponse;
   EditPostInput: EditPostInput;
   GetPostResponse: GetPostResponse;
@@ -283,9 +295,15 @@ export type CreatePostResponseResolvers<ContextType = any, ParentType extends Re
 
 export type MutationResolvers<ContextType = any, ParentType extends ResolversParentTypes['Mutation'] = ResolversParentTypes['Mutation']> = {
   CreatePost?: Resolver<Maybe<ResolversTypes['CreatePostResponse']>, ParentType, ContextType, RequireFields<MutationCreatePostArgs, 'input'>>;
+  DeletePost?: Resolver<Maybe<ResolversTypes['DeletePostResponse']>, ParentType, ContextType, RequireFields<MutationDeletePostArgs, 'postId'>>;
   EditPost?: Resolver<Maybe<ResolversTypes['EditPostResponse']>, ParentType, ContextType, RequireFields<MutationEditPostArgs, 'postId' | 'input'>>;
   Login?: Resolver<Maybe<ResolversTypes['LoginResponse']>, ParentType, ContextType, RequireFields<MutationLoginArgs, 'input'>>;
   Register?: Resolver<Maybe<ResolversTypes['RegisterResponse']>, ParentType, ContextType, RequireFields<MutationRegisterArgs, 'input'>>;
+};
+
+export type DeletePostResponseResolvers<ContextType = any, ParentType extends ResolversParentTypes['DeletePostResponse'] = ResolversParentTypes['DeletePostResponse']> = {
+  result?: Resolver<ResolversTypes['Post'], ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType>;
 };
 
 export type EditPostResponseResolvers<ContextType = any, ParentType extends ResolversParentTypes['EditPostResponse'] = ResolversParentTypes['EditPostResponse']> = {
@@ -355,6 +373,7 @@ export type UserResolvers<ContextType = any, ParentType extends ResolversParentT
 export type Resolvers<ContextType = any> = {
   CreatePostResponse?: CreatePostResponseResolvers<ContextType>;
   Mutation?: MutationResolvers<ContextType>;
+  DeletePostResponse?: DeletePostResponseResolvers<ContextType>;
   EditPostResponse?: EditPostResponseResolvers<ContextType>;
   GetPostResponse?: GetPostResponseResolvers<ContextType>;
   Query?: QueryResolvers<ContextType>;

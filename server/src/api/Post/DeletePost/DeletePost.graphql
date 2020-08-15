@@ -1,0 +1,7 @@
+type DeletePostResponse {
+  result: Post!
+}
+
+type Mutation {
+  DeletePost(postId: String!): DeletePostResponse
+}
