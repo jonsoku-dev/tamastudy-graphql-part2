@@ -1,13 +1,14 @@
-import { connect } from 'mongoose';
+import mongoose from 'mongoose';
 import env from '../config/env';
 
 export default async () => {
+  // mongoose.set('debug', true);
   if (!env.MONGO_URI) {
     console.error('🤯 Please check your .env file!');
     process.exit(1);
   }
   try {
-    connect(env.MONGO_URI, {
+    mongoose.connect(env.MONGO_URI, {
       useNewUrlParser: true,
       useUnifiedTopology: true,
       useCreateIndex: true,

@@ -14,6 +14,7 @@ export const errorName = {
   USER_NOT_EXISTS: 'USER_NOT_EXISTS',
   SERVER_ERROR: 'SERVER_ERROR',
   IS_AUTHENTICATED_ERROR: 'IS_AUTHENTICATED_ERROR',
+  POST_NOT_EXISTS: 'POST_NOT_EXISTS',
 };
 
 export const errorType: ErrorMap = {
@@ -32,5 +33,9 @@ export const errorType: ErrorMap = {
   SERVER_ERROR: {
     message: 'Server error.',
     statusCode: 500,
+  },
+  POST_NOT_EXISTS: {
+    message: '포스트가 존재하지 않습니다. ',
+    statusCode: 403,
   },
 };

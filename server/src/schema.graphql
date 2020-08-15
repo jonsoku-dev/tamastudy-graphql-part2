@@ -1,6 +1,56 @@
+type CreatePostResponse {
+  result: Post!
+}
+
+input CreatePostInput {
+  title: String!
+  desc: String!
+}
+
+type Mutation {
+  CreatePost(input: CreatePostInput!): CreatePostResponse
+  EditPost(postId: String!, input: EditPostInput!): EditPostResponse
+  Login(input: LoginInput!): LoginResponse
+  Register(input: RegisterInput!): RegisterResponse
+}
+
+type EditPostResponse {
+  result: Post!
+}
+
+input EditPostInput {
+  title: String
+  desc: String
+}
+
+type GetPostResponse {
+  result: Post!
+}
+
 type Query {
+  GetPost(postId: String!): GetPostResponse
+  GetPostList: GetPostListResponse
   Foo(id: String!): String
   GetUser: GetUserResponse!
+}
+
+type GetPostListResponse {
+  result: [Post!]
+}
+
+type Post @entity {
+  _id: String! @id
+  title: String @column
+  desc: String @column
+  view: String @column
+  user: UserForPost @column
+  createdAt: String @column
+  updatedAt: String @column
+}
+
+type UserForPost {
+  _id: String!
+  username: String!
 }
 
 type GetUserResponse {
@@ -14,11 +64,6 @@ type LoginResponse {
 input LoginInput {
   email: String!
   password: String!
-}
-
-type Mutation {
-  Login(input: LoginInput!): LoginResponse
-  Register(input: RegisterInput!): RegisterResponse
 }
 
 type RegisterResponse {

@@ -12,14 +12,92 @@ export type Scalars = {
   Float: number;
 };
 
+export type CreatePostResponse = {
+  __typename?: 'CreatePostResponse';
+  result: Post;
+};
+
+export type CreatePostInput = {
+  title: Scalars['String'];
+  desc: Scalars['String'];
+};
+
+export type Mutation = {
+  __typename?: 'Mutation';
+  CreatePost?: Maybe<CreatePostResponse>;
+  EditPost?: Maybe<EditPostResponse>;
+  Login?: Maybe<LoginResponse>;
+  Register?: Maybe<RegisterResponse>;
+};
+
+export type MutationCreatePostArgs = {
+  input: CreatePostInput;
+};
+
+export type MutationEditPostArgs = {
+  postId: Scalars['String'];
+  input: EditPostInput;
+};
+
+export type MutationLoginArgs = {
+  input: LoginInput;
+};
+
+export type MutationRegisterArgs = {
+  input: RegisterInput;
+};
+
+export type EditPostResponse = {
+  __typename?: 'EditPostResponse';
+  result: Post;
+};
+
+export type EditPostInput = {
+  title?: Maybe<Scalars['String']>;
+  desc?: Maybe<Scalars['String']>;
+};
+
+export type GetPostResponse = {
+  __typename?: 'GetPostResponse';
+  result: Post;
+};
+
 export type Query = {
   __typename?: 'Query';
+  GetPost?: Maybe<GetPostResponse>;
+  GetPostList?: Maybe<GetPostListResponse>;
   Foo?: Maybe<Scalars['String']>;
   GetUser: GetUserResponse;
 };
 
+export type QueryGetPostArgs = {
+  postId: Scalars['String'];
+};
+
 export type QueryFooArgs = {
   id: Scalars['String'];
+};
+
+export type GetPostListResponse = {
+  __typename?: 'GetPostListResponse';
+  result?: Maybe<Array<Post>>;
+};
+
+export type Post = {
+  __typename?: 'Post';
+  _id: Scalars['String'];
+  title?: Maybe<Scalars['String']>;
+  desc?: Maybe<Scalars['String']>;
+  view?: Maybe<Scalars['String']>;
+  user?: Maybe<UserForPost>;
+  createdAt?: Maybe<Scalars['String']>;
+  updatedAt?: Maybe<Scalars['String']>;
+};
+
+export type UserForPost = {
+  __typename?: 'UserForPost';
+  _id: Scalars['String'];
+  username: Scalars['String'];
 };
 
 export type GetUserResponse = {
@@ -35,20 +113,6 @@ export type LoginResponse = {
 export type LoginInput = {
   email: Scalars['String'];
   password: Scalars['String'];
-};
-
-export type Mutation = {
-  __typename?: 'Mutation';
-  Login?: Maybe<LoginResponse>;
-  Register?: Maybe<RegisterResponse>;
-};
-
-export type MutationLoginArgs = {
-  input: LoginInput;
-};
-
-export type MutationRegisterArgs = {
-  input: RegisterInput;
 };
 
 export type RegisterResponse = {
@@ -136,12 +200,20 @@ export type DirectiveResolverFn<TResult = {}, TParent = {}, TContext = {}, TArgs
 
 /** Mapping between all available schema types and the resolvers types */
 export type ResolversTypes = {
-  Query: ResolverTypeWrapper<{}>;
+  CreatePostResponse: ResolverTypeWrapper<CreatePostResponse>;
+  CreatePostInput: CreatePostInput;
   String: ResolverTypeWrapper<Scalars['String']>;
+  Mutation: ResolverTypeWrapper<{}>;
+  EditPostResponse: ResolverTypeWrapper<EditPostResponse>;
+  EditPostInput: EditPostInput;
+  GetPostResponse: ResolverTypeWrapper<GetPostResponse>;
+  Query: ResolverTypeWrapper<{}>;
+  GetPostListResponse: ResolverTypeWrapper<GetPostListResponse>;
+  Post: ResolverTypeWrapper<Post>;
+  UserForPost: ResolverTypeWrapper<UserForPost>;
   GetUserResponse: ResolverTypeWrapper<GetUserResponse>;
   LoginResponse: ResolverTypeWrapper<LoginResponse>;
   LoginInput: LoginInput;
-  Mutation: ResolverTypeWrapper<{}>;
   RegisterResponse: ResolverTypeWrapper<RegisterResponse>;
   RegisterInput: RegisterInput;
   User: ResolverTypeWrapper<User>;
@@ -151,12 +223,20 @@ export type ResolversTypes = {
 
 /** Mapping between all available schema types and the resolvers parents */
 export type ResolversParentTypes = {
-  Query: {};
+  CreatePostResponse: CreatePostResponse;
+  CreatePostInput: CreatePostInput;
   String: Scalars['String'];
+  Mutation: {};
+  EditPostResponse: EditPostResponse;
+  EditPostInput: EditPostInput;
+  GetPostResponse: GetPostResponse;
+  Query: {};
+  GetPostListResponse: GetPostListResponse;
+  Post: Post;
+  UserForPost: UserForPost;
   GetUserResponse: GetUserResponse;
   LoginResponse: LoginResponse;
   LoginInput: LoginInput;
-  Mutation: {};
   RegisterResponse: RegisterResponse;
   RegisterInput: RegisterInput;
   User: User;
@@ -196,9 +276,55 @@ export type MapDirectiveArgs = { path: Scalars['String'] };
 
 export type MapDirectiveResolver<Result, Parent, ContextType = any, Args = MapDirectiveArgs> = DirectiveResolverFn<Result, Parent, ContextType, Args>;
 
+export type CreatePostResponseResolvers<ContextType = any, ParentType extends ResolversParentTypes['CreatePostResponse'] = ResolversParentTypes['CreatePostResponse']> = {
+  result?: Resolver<ResolversTypes['Post'], ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType>;
+};
+
+export type MutationResolvers<ContextType = any, ParentType extends ResolversParentTypes['Mutation'] = ResolversParentTypes['Mutation']> = {
+  CreatePost?: Resolver<Maybe<ResolversTypes['CreatePostResponse']>, ParentType, ContextType, RequireFields<MutationCreatePostArgs, 'input'>>;
+  EditPost?: Resolver<Maybe<ResolversTypes['EditPostResponse']>, ParentType, ContextType, RequireFields<MutationEditPostArgs, 'postId' | 'input'>>;
+  Login?: Resolver<Maybe<ResolversTypes['LoginResponse']>, ParentType, ContextType, RequireFields<MutationLoginArgs, 'input'>>;
+  Register?: Resolver<Maybe<ResolversTypes['RegisterResponse']>, ParentType, ContextType, RequireFields<MutationRegisterArgs, 'input'>>;
+};
+
+export type EditPostResponseResolvers<ContextType = any, ParentType extends ResolversParentTypes['EditPostResponse'] = ResolversParentTypes['EditPostResponse']> = {
+  result?: Resolver<ResolversTypes['Post'], ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType>;
+};
+
+export type GetPostResponseResolvers<ContextType = any, ParentType extends ResolversParentTypes['GetPostResponse'] = ResolversParentTypes['GetPostResponse']> = {
+  result?: Resolver<ResolversTypes['Post'], ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType>;
+};
+
 export type QueryResolvers<ContextType = any, ParentType extends ResolversParentTypes['Query'] = ResolversParentTypes['Query']> = {
+  GetPost?: Resolver<Maybe<ResolversTypes['GetPostResponse']>, ParentType, ContextType, RequireFields<QueryGetPostArgs, 'postId'>>;
+  GetPostList?: Resolver<Maybe<ResolversTypes['GetPostListResponse']>, ParentType, ContextType>;
   Foo?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType, RequireFields<QueryFooArgs, 'id'>>;
   GetUser?: Resolver<ResolversTypes['GetUserResponse'], ParentType, ContextType>;
+};
+
+export type GetPostListResponseResolvers<ContextType = any, ParentType extends ResolversParentTypes['GetPostListResponse'] = ResolversParentTypes['GetPostListResponse']> = {
+  result?: Resolver<Maybe<Array<ResolversTypes['Post']>>, ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType>;
+};
+
+export type PostResolvers<ContextType = any, ParentType extends ResolversParentTypes['Post'] = ResolversParentTypes['Post']> = {
+  _id?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  title?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  desc?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  view?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  user?: Resolver<Maybe<ResolversTypes['UserForPost']>, ParentType, ContextType>;
+  createdAt?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  updatedAt?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType>;
+};
+
+export type UserForPostResolvers<ContextType = any, ParentType extends ResolversParentTypes['UserForPost'] = ResolversParentTypes['UserForPost']> = {
+  _id?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  username?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType>;
 };
 
 export type GetUserResponseResolvers<ContextType = any, ParentType extends ResolversParentTypes['GetUserResponse'] = ResolversParentTypes['GetUserResponse']> = {
@@ -209,11 +335,6 @@ export type GetUserResponseResolvers<ContextType = any, ParentType extends Resol
 export type LoginResponseResolvers<ContextType = any, ParentType extends ResolversParentTypes['LoginResponse'] = ResolversParentTypes['LoginResponse']> = {
   token?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType>;
-};
-
-export type MutationResolvers<ContextType = any, ParentType extends ResolversParentTypes['Mutation'] = ResolversParentTypes['Mutation']> = {
-  Login?: Resolver<Maybe<ResolversTypes['LoginResponse']>, ParentType, ContextType, RequireFields<MutationLoginArgs, 'input'>>;
-  Register?: Resolver<Maybe<ResolversTypes['RegisterResponse']>, ParentType, ContextType, RequireFields<MutationRegisterArgs, 'input'>>;
 };
 
 export type RegisterResponseResolvers<ContextType = any, ParentType extends ResolversParentTypes['RegisterResponse'] = ResolversParentTypes['RegisterResponse']> = {
@@ -232,10 +353,16 @@ export type UserResolvers<ContextType = any, ParentType extends ResolversParentT
 };
 
 export type Resolvers<ContextType = any> = {
+  CreatePostResponse?: CreatePostResponseResolvers<ContextType>;
+  Mutation?: MutationResolvers<ContextType>;
+  EditPostResponse?: EditPostResponseResolvers<ContextType>;
+  GetPostResponse?: GetPostResponseResolvers<ContextType>;
   Query?: QueryResolvers<ContextType>;
+  GetPostListResponse?: GetPostListResponseResolvers<ContextType>;
+  Post?: PostResolvers<ContextType>;
+  UserForPost?: UserForPostResolvers<ContextType>;
   GetUserResponse?: GetUserResponseResolvers<ContextType>;
   LoginResponse?: LoginResponseResolvers<ContextType>;
-  Mutation?: MutationResolvers<ContextType>;
   RegisterResponse?: RegisterResponseResolvers<ContextType>;
   User?: UserResolvers<ContextType>;
 };
@@ -262,6 +389,16 @@ export type DirectiveResolvers<ContextType = any> = {
  */
 export type IDirectiveResolvers<ContextType = any> = DirectiveResolvers<ContextType>;
 import { ObjectID } from 'mongodb';
+export type PostDbObject = {
+  _id: ObjectID;
+  title?: Maybe<string>;
+  desc?: Maybe<string>;
+  view?: Maybe<string>;
+  user?: Maybe<UserForPost>;
+  createdAt?: Maybe<string>;
+  updatedAt?: Maybe<string>;
+};
+
 export type UserDbObject = {
   _id: ObjectID;
   username: string;

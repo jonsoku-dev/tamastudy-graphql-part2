@@ -1,0 +1,7 @@
+type GetPostListResponse {
+  result: [Post!]
+}
+
+type Query {
+  GetPostList: GetPostListResponse
+}

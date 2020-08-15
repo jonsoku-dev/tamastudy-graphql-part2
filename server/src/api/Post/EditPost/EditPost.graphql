@@ -1,0 +1,12 @@
+type EditPostResponse {
+  result: Post!
+}
+
+input EditPostInput {
+  title: String
+  desc: String
+}
+
+type Mutation {
+  EditPost(postId: String!, input: EditPostInput!): EditPostResponse
+}
