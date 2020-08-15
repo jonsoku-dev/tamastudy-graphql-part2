@@ -20,16 +20,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f64a5511-19da-4b94-97b2-0ed4bb1d9663" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/client/src/client/Client.graphql" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/client/ClientQuery.graphql" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/codegen.yml" beforeDir="false" afterPath="$PROJECT_DIR$/client/codegen.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/graphql.schema.json" beforeDir="false" afterPath="$PROJECT_DIR$/client/graphql.schema.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/client/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/client.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/client.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/generated/graphql.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/generated/graphql.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/pages/auth/Login/LoginContainer.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/pages/auth/Login/LoginContainer.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/api/User/GetUser/GetUser.resolvers.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/api/User/GetUser/GetUser.resolvers.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -40,6 +31,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="GraphQL File" />
+        <option value="package.json" />
+        <option value="TypeScript JSX File" />
       </list>
     </option>
   </component>
@@ -69,8 +62,13 @@
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="nodejs_package_manager_path" value="yarn" />
     <property name="prettierjs.PrettierConfiguration.Package" value="/usr/local/lib/node_modules/prettier" />
-    <property name="settings.editor.selected.configurable" value="settings.javascript.prettier" />
-    <property name="ts.external.directory.path" value="$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external" />
+    <property name="settings.editor.selected.configurable" value="editing.templates" />
+    <property name="ts.external.directory.path" value="$PROJECT_DIR$/client/node_modules/typescript/lib" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/client/src/components/ui" />
+    </key>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -82,6 +80,7 @@
       <updated>1596210240530</updated>
       <workItem from="1596210241644" duration="802000" />
       <workItem from="1596232544120" duration="7584000" />
+      <workItem from="1597452114956" duration="111000" />
     </task>
     <servers />
   </component>
@@ -124,10 +123,14 @@
       <screen x="0" y="23" width="5120" height="1417" />
     </state>
     <state width="1636" height="307" key="GridCell.Tab.0.right/0.23.5120.1417@0.23.5120.1417" timestamp="1596210531344" />
-    <state x="3284" y="370" key="SettingsEditor" timestamp="1596848453817">
+    <state x="3284" y="370" key="SettingsEditor" timestamp="1596853961186">
       <screen x="0" y="23" width="5120" height="1417" />
     </state>
-    <state x="3284" y="370" key="SettingsEditor/0.23.5120.1417@0.23.5120.1417" timestamp="1596848453817" />
+    <state x="3284" y="370" key="SettingsEditor/0.23.5120.1417@0.23.5120.1417" timestamp="1596853961186" />
+    <state x="3492" y="467" key="Vcs.Push.Dialog.v2" timestamp="1596854967669">
+      <screen x="0" y="23" width="5120" height="1417" />
+    </state>
+    <state x="3492" y="467" key="Vcs.Push.Dialog.v2/0.23.5120.1417@0.23.5120.1417" timestamp="1596854967669" />
     <state x="3335" y="526" width="584" height="522" key="find.popup" timestamp="1596210749676">
       <screen x="0" y="23" width="5120" height="1417" />
     </state>
@@ -136,9 +139,9 @@
       <screen x="0" y="23" width="5120" height="1417" />
     </state>
     <state width="600" height="440" key="javadoc.popup/0.23.5120.1417@0.23.5120.1417" timestamp="1596246622286" />
-    <state x="2839" y="435" width="670" height="676" key="search.everywhere.popup" timestamp="1596232694528">
+    <state x="2839" y="435" width="670" height="676" key="search.everywhere.popup" timestamp="1596852880913">
       <screen x="0" y="23" width="5120" height="1417" />
     </state>
-    <state x="2839" y="435" width="670" height="676" key="search.everywhere.popup/0.23.5120.1417@0.23.5120.1417" timestamp="1596232694528" />
+    <state x="2839" y="435" width="670" height="676" key="search.everywhere.popup/0.23.5120.1417@0.23.5120.1417" timestamp="1596852880913" />
   </component>
 </project>
