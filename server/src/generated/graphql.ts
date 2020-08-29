@@ -12,23 +12,41 @@ export type Scalars = {
   Float: number;
 };
 
-export type CreatePostResponse = {
-  __typename?: 'CreatePostResponse';
-  result: Post;
+export type CreateCommentResponse = {
+  __typename?: 'CreateCommentResponse';
+  result: Comment;
 };
 
-export type CreatePostInput = {
-  title: Scalars['String'];
+export type CreateCommentInput = {
   desc: Scalars['String'];
 };
 
 export type Mutation = {
   __typename?: 'Mutation';
+  CreateComment?: Maybe<CreateCommentResponse>;
+  DeleteComment?: Maybe<DeleteCommentResponse>;
+  EditComment?: Maybe<EditCommentResponse>;
   CreatePost?: Maybe<CreatePostResponse>;
   DeletePost?: Maybe<DeletePostResponse>;
   EditPost?: Maybe<EditPostResponse>;
   Login?: Maybe<LoginResponse>;
   Register?: Maybe<RegisterResponse>;
+};
+
+export type MutationCreateCommentArgs = {
+  postId: Scalars['String'];
+  input: CreateCommentInput;
+};
+
+export type MutationDeleteCommentArgs = {
+  postId: Scalars['String'];
+  commentId: Scalars['String'];
+};
+
+export type MutationEditCommentArgs = {
+  postId: Scalars['String'];
+  commentId: Scalars['String'];
+  input: EditCommentInput;
 };
 
 export type MutationCreatePostArgs = {
@@ -52,6 +70,72 @@ export type MutationRegisterArgs = {
   input: RegisterInput;
 };
 
+export type DeleteCommentResponse = {
+  __typename?: 'DeleteCommentResponse';
+  result: Scalars['String'];
+};
+
+export type EditCommentResponse = {
+  __typename?: 'EditCommentResponse';
+  result: Comment;
+};
+
+export type EditCommentInput = {
+  desc?: Maybe<Scalars['String']>;
+};
+
+export type GetCommentListResponse = {
+  __typename?: 'GetCommentListResponse';
+  result: Array<Comment>;
+};
+
+export type Query = {
+  __typename?: 'Query';
+  GetCommentList?: Maybe<GetCommentListResponse>;
+  GetPost?: Maybe<GetPostResponse>;
+  GetPostList?: Maybe<GetPostListResponse>;
+  Foo?: Maybe<Scalars['String']>;
+  GetUser: GetUserResponse;
+};
+
+export type QueryGetCommentListArgs = {
+  postId: Scalars['String'];
+};
+
+export type QueryGetPostArgs = {
+  postId: Scalars['String'];
+};
+
+export type QueryFooArgs = {
+  id: Scalars['String'];
+};
+
+export type Comment = {
+  __typename?: 'Comment';
+  _id: Scalars['String'];
+  desc?: Maybe<Scalars['String']>;
+  user?: Maybe<UserForComment>;
+  postId?: Maybe<Scalars['String']>;
+  createdAt?: Maybe<Scalars['String']>;
+  updatedAt?: Maybe<Scalars['String']>;
+};
+
+export type UserForComment = {
+  __typename?: 'UserForComment';
+  _id: Scalars['String'];
+  username: Scalars['String'];
+};
+
+export type CreatePostResponse = {
+  __typename?: 'CreatePostResponse';
+  result: Post;
+};
+
+export type CreatePostInput = {
+  title: Scalars['String'];
+  desc: Scalars['String'];
+};
+
 export type DeletePostResponse = {
   __typename?: 'DeletePostResponse';
   result: Post;
@@ -72,22 +156,6 @@ export type GetPostResponse = {
   result: Post;
 };
 
-export type Query = {
-  __typename?: 'Query';
-  GetPost?: Maybe<GetPostResponse>;
-  GetPostList?: Maybe<GetPostListResponse>;
-  Foo?: Maybe<Scalars['String']>;
-  GetUser: GetUserResponse;
-};
-
-export type QueryGetPostArgs = {
-  postId: Scalars['String'];
-};
-
-export type QueryFooArgs = {
-  id: Scalars['String'];
-};
-
 export type GetPostListResponse = {
   __typename?: 'GetPostListResponse';
   result?: Maybe<Array<Post>>;
@@ -100,6 +168,7 @@ export type Post = {
   desc?: Maybe<Scalars['String']>;
   view?: Maybe<Scalars['String']>;
   user?: Maybe<UserForPost>;
+  comments?: Maybe<Array<Comment>>;
   createdAt?: Maybe<Scalars['String']>;
   updatedAt?: Maybe<Scalars['String']>;
 };
@@ -210,15 +279,23 @@ export type DirectiveResolverFn<TResult = {}, TParent = {}, TContext = {}, TArgs
 
 /** Mapping between all available schema types and the resolvers types */
 export type ResolversTypes = {
-  CreatePostResponse: ResolverTypeWrapper<CreatePostResponse>;
-  CreatePostInput: CreatePostInput;
+  CreateCommentResponse: ResolverTypeWrapper<CreateCommentResponse>;
+  CreateCommentInput: CreateCommentInput;
   String: ResolverTypeWrapper<Scalars['String']>;
   Mutation: ResolverTypeWrapper<{}>;
+  DeleteCommentResponse: ResolverTypeWrapper<DeleteCommentResponse>;
+  EditCommentResponse: ResolverTypeWrapper<EditCommentResponse>;
+  EditCommentInput: EditCommentInput;
+  GetCommentListResponse: ResolverTypeWrapper<GetCommentListResponse>;
+  Query: ResolverTypeWrapper<{}>;
+  Comment: ResolverTypeWrapper<Comment>;
+  UserForComment: ResolverTypeWrapper<UserForComment>;
+  CreatePostResponse: ResolverTypeWrapper<CreatePostResponse>;
+  CreatePostInput: CreatePostInput;
   DeletePostResponse: ResolverTypeWrapper<DeletePostResponse>;
   EditPostResponse: ResolverTypeWrapper<EditPostResponse>;
   EditPostInput: EditPostInput;
   GetPostResponse: ResolverTypeWrapper<GetPostResponse>;
-  Query: ResolverTypeWrapper<{}>;
   GetPostListResponse: ResolverTypeWrapper<GetPostListResponse>;
   Post: ResolverTypeWrapper<Post>;
   UserForPost: ResolverTypeWrapper<UserForPost>;
@@ -234,15 +311,23 @@ export type ResolversTypes = {
 
 /** Mapping between all available schema types and the resolvers parents */
 export type ResolversParentTypes = {
-  CreatePostResponse: CreatePostResponse;
-  CreatePostInput: CreatePostInput;
+  CreateCommentResponse: CreateCommentResponse;
+  CreateCommentInput: CreateCommentInput;
   String: Scalars['String'];
   Mutation: {};
+  DeleteCommentResponse: DeleteCommentResponse;
+  EditCommentResponse: EditCommentResponse;
+  EditCommentInput: EditCommentInput;
+  GetCommentListResponse: GetCommentListResponse;
+  Query: {};
+  Comment: Comment;
+  UserForComment: UserForComment;
+  CreatePostResponse: CreatePostResponse;
+  CreatePostInput: CreatePostInput;
   DeletePostResponse: DeletePostResponse;
   EditPostResponse: EditPostResponse;
   EditPostInput: EditPostInput;
   GetPostResponse: GetPostResponse;
-  Query: {};
   GetPostListResponse: GetPostListResponse;
   Post: Post;
   UserForPost: UserForPost;
@@ -288,17 +373,64 @@ export type MapDirectiveArgs = { path: Scalars['String'] };
 
 export type MapDirectiveResolver<Result, Parent, ContextType = any, Args = MapDirectiveArgs> = DirectiveResolverFn<Result, Parent, ContextType, Args>;
 
-export type CreatePostResponseResolvers<ContextType = any, ParentType extends ResolversParentTypes['CreatePostResponse'] = ResolversParentTypes['CreatePostResponse']> = {
-  result?: Resolver<ResolversTypes['Post'], ParentType, ContextType>;
+export type CreateCommentResponseResolvers<ContextType = any, ParentType extends ResolversParentTypes['CreateCommentResponse'] = ResolversParentTypes['CreateCommentResponse']> = {
+  result?: Resolver<ResolversTypes['Comment'], ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType>;
 };
 
 export type MutationResolvers<ContextType = any, ParentType extends ResolversParentTypes['Mutation'] = ResolversParentTypes['Mutation']> = {
+  CreateComment?: Resolver<Maybe<ResolversTypes['CreateCommentResponse']>, ParentType, ContextType, RequireFields<MutationCreateCommentArgs, 'postId' | 'input'>>;
+  DeleteComment?: Resolver<Maybe<ResolversTypes['DeleteCommentResponse']>, ParentType, ContextType, RequireFields<MutationDeleteCommentArgs, 'postId' | 'commentId'>>;
+  EditComment?: Resolver<Maybe<ResolversTypes['EditCommentResponse']>, ParentType, ContextType, RequireFields<MutationEditCommentArgs, 'postId' | 'commentId' | 'input'>>;
   CreatePost?: Resolver<Maybe<ResolversTypes['CreatePostResponse']>, ParentType, ContextType, RequireFields<MutationCreatePostArgs, 'input'>>;
   DeletePost?: Resolver<Maybe<ResolversTypes['DeletePostResponse']>, ParentType, ContextType, RequireFields<MutationDeletePostArgs, 'postId'>>;
   EditPost?: Resolver<Maybe<ResolversTypes['EditPostResponse']>, ParentType, ContextType, RequireFields<MutationEditPostArgs, 'postId' | 'input'>>;
   Login?: Resolver<Maybe<ResolversTypes['LoginResponse']>, ParentType, ContextType, RequireFields<MutationLoginArgs, 'input'>>;
   Register?: Resolver<Maybe<ResolversTypes['RegisterResponse']>, ParentType, ContextType, RequireFields<MutationRegisterArgs, 'input'>>;
+};
+
+export type DeleteCommentResponseResolvers<ContextType = any, ParentType extends ResolversParentTypes['DeleteCommentResponse'] = ResolversParentTypes['DeleteCommentResponse']> = {
+  result?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType>;
+};
+
+export type EditCommentResponseResolvers<ContextType = any, ParentType extends ResolversParentTypes['EditCommentResponse'] = ResolversParentTypes['EditCommentResponse']> = {
+  result?: Resolver<ResolversTypes['Comment'], ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType>;
+};
+
+export type GetCommentListResponseResolvers<ContextType = any, ParentType extends ResolversParentTypes['GetCommentListResponse'] = ResolversParentTypes['GetCommentListResponse']> = {
+  result?: Resolver<Array<ResolversTypes['Comment']>, ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType>;
+};
+
+export type QueryResolvers<ContextType = any, ParentType extends ResolversParentTypes['Query'] = ResolversParentTypes['Query']> = {
+  GetCommentList?: Resolver<Maybe<ResolversTypes['GetCommentListResponse']>, ParentType, ContextType, RequireFields<QueryGetCommentListArgs, 'postId'>>;
+  GetPost?: Resolver<Maybe<ResolversTypes['GetPostResponse']>, ParentType, ContextType, RequireFields<QueryGetPostArgs, 'postId'>>;
+  GetPostList?: Resolver<Maybe<ResolversTypes['GetPostListResponse']>, ParentType, ContextType>;
+  Foo?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType, RequireFields<QueryFooArgs, 'id'>>;
+  GetUser?: Resolver<ResolversTypes['GetUserResponse'], ParentType, ContextType>;
+};
+
+export type CommentResolvers<ContextType = any, ParentType extends ResolversParentTypes['Comment'] = ResolversParentTypes['Comment']> = {
+  _id?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  desc?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  user?: Resolver<Maybe<ResolversTypes['UserForComment']>, ParentType, ContextType>;
+  postId?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  createdAt?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  updatedAt?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType>;
+};
+
+export type UserForCommentResolvers<ContextType = any, ParentType extends ResolversParentTypes['UserForComment'] = ResolversParentTypes['UserForComment']> = {
+  _id?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  username?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType>;
+};
+
+export type CreatePostResponseResolvers<ContextType = any, ParentType extends ResolversParentTypes['CreatePostResponse'] = ResolversParentTypes['CreatePostResponse']> = {
+  result?: Resolver<ResolversTypes['Post'], ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType>;
 };
 
 export type DeletePostResponseResolvers<ContextType = any, ParentType extends ResolversParentTypes['DeletePostResponse'] = ResolversParentTypes['DeletePostResponse']> = {
@@ -316,13 +448,6 @@ export type GetPostResponseResolvers<ContextType = any, ParentType extends Resol
   __isTypeOf?: IsTypeOfResolverFn<ParentType>;
 };
 
-export type QueryResolvers<ContextType = any, ParentType extends ResolversParentTypes['Query'] = ResolversParentTypes['Query']> = {
-  GetPost?: Resolver<Maybe<ResolversTypes['GetPostResponse']>, ParentType, ContextType, RequireFields<QueryGetPostArgs, 'postId'>>;
-  GetPostList?: Resolver<Maybe<ResolversTypes['GetPostListResponse']>, ParentType, ContextType>;
-  Foo?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType, RequireFields<QueryFooArgs, 'id'>>;
-  GetUser?: Resolver<ResolversTypes['GetUserResponse'], ParentType, ContextType>;
-};
-
 export type GetPostListResponseResolvers<ContextType = any, ParentType extends ResolversParentTypes['GetPostListResponse'] = ResolversParentTypes['GetPostListResponse']> = {
   result?: Resolver<Maybe<Array<ResolversTypes['Post']>>, ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType>;
@@ -334,6 +459,7 @@ export type PostResolvers<ContextType = any, ParentType extends ResolversParentT
   desc?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   view?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   user?: Resolver<Maybe<ResolversTypes['UserForPost']>, ParentType, ContextType>;
+  comments?: Resolver<Maybe<Array<ResolversTypes['Comment']>>, ParentType, ContextType>;
   createdAt?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   updatedAt?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType>;
@@ -371,12 +497,18 @@ export type UserResolvers<ContextType = any, ParentType extends ResolversParentT
 };
 
 export type Resolvers<ContextType = any> = {
-  CreatePostResponse?: CreatePostResponseResolvers<ContextType>;
+  CreateCommentResponse?: CreateCommentResponseResolvers<ContextType>;
   Mutation?: MutationResolvers<ContextType>;
+  DeleteCommentResponse?: DeleteCommentResponseResolvers<ContextType>;
+  EditCommentResponse?: EditCommentResponseResolvers<ContextType>;
+  GetCommentListResponse?: GetCommentListResponseResolvers<ContextType>;
+  Query?: QueryResolvers<ContextType>;
+  Comment?: CommentResolvers<ContextType>;
+  UserForComment?: UserForCommentResolvers<ContextType>;
+  CreatePostResponse?: CreatePostResponseResolvers<ContextType>;
   DeletePostResponse?: DeletePostResponseResolvers<ContextType>;
   EditPostResponse?: EditPostResponseResolvers<ContextType>;
   GetPostResponse?: GetPostResponseResolvers<ContextType>;
-  Query?: QueryResolvers<ContextType>;
   GetPostListResponse?: GetPostListResponseResolvers<ContextType>;
   Post?: PostResolvers<ContextType>;
   UserForPost?: UserForPostResolvers<ContextType>;
@@ -408,12 +540,22 @@ export type DirectiveResolvers<ContextType = any> = {
  */
 export type IDirectiveResolvers<ContextType = any> = DirectiveResolvers<ContextType>;
 import { ObjectID } from 'mongodb';
+export type CommentDbObject = {
+  _id: ObjectID;
+  desc?: Maybe<string>;
+  user?: Maybe<UserForComment>;
+  postId?: Maybe<string>;
+  createdAt?: Maybe<string>;
+  updatedAt?: Maybe<string>;
+};
+
 export type PostDbObject = {
   _id: ObjectID;
   title?: Maybe<string>;
   desc?: Maybe<string>;
   view?: Maybe<string>;
   user?: Maybe<UserForPost>;
+  comments?: Maybe<Array<Comment>>;
   createdAt?: Maybe<string>;
   updatedAt?: Maybe<string>;
 };

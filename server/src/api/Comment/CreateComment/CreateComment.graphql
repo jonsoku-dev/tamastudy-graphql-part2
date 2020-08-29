@@ -1,0 +1,11 @@
+type CreateCommentResponse {
+  result: Comment!
+}
+
+input CreateCommentInput {
+  desc: String!
+}
+
+type Mutation {
+  CreateComment(postId: String! ,input: CreateCommentInput!): CreateCommentResponse
+}

@@ -1,0 +1,7 @@
+type GetCommentListResponse {
+  result: [Comment!]!
+}
+
+type Query {
+  GetCommentList(postId: String!): GetCommentListResponse
+}

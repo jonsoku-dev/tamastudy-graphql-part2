@@ -1,0 +1,15 @@
+mutation EditComment($postId: String!, $commentId: String!, $input: EditCommentInput! ) {
+    EditComment(postId: $postId, commentId: $commentId, input: $input) {
+        result {
+            _id
+            desc
+            user{
+                _id
+                username
+            }
+            postId
+            createdAt
+            updatedAt
+        }
+    }
+}

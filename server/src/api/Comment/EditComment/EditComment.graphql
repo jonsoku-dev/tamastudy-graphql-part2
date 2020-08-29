@@ -1,0 +1,11 @@
+type EditCommentResponse {
+  result: Comment!
+}
+
+input EditCommentInput {
+  desc: String
+}
+
+type Mutation {
+  EditComment(postId: String!, commentId: String!, input: EditCommentInput!): EditCommentResponse
+}

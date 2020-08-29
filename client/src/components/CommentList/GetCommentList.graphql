@@ -1,0 +1,14 @@
+query GetCommentList ($postId: String!) {
+    GetCommentList(postId: $postId) {
+        result {
+            _id
+            desc
+            user {
+                _id
+                username
+            }
+            createdAt
+            updatedAt
+        }
+    }
+}

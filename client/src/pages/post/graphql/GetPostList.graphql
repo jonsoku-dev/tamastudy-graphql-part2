@@ -1,0 +1,20 @@
+# query variables
+
+# http headers
+
+query GetPostList {
+  GetPostList {
+    result {
+      _id
+      title
+      desc
+      view
+      user {
+        _id
+        username
+      }
+      createdAt
+      updatedAt
+    }
+  }
+}

@@ -1,9 +1,10 @@
 type Post @entity {
-  _id: String! @id
+  _id: String! @id @column
   title: String @column
   desc: String @column
   view: String @column
   user: UserForPost @column
+  comments: [Comment!] @column
   createdAt: String @column
   updatedAt: String @column
 }

@@ -15,6 +15,8 @@ export const errorName = {
   SERVER_ERROR: 'SERVER_ERROR',
   IS_AUTHENTICATED_ERROR: 'IS_AUTHENTICATED_ERROR',
   POST_NOT_EXISTS: 'POST_NOT_EXISTS',
+  COMMENT_NOT_EXISTS: 'COMMENT_NOT_EXISTS',
+  PERMISSION_ERROR: 'PERMISSION_ERROR',
 };
 
 export const errorType: ErrorMap = {
@@ -37,5 +39,13 @@ export const errorType: ErrorMap = {
   POST_NOT_EXISTS: {
     message: '포스트가 존재하지 않습니다. ',
     statusCode: 403,
+  },
+  COMMENT_NOT_EXISTS: {
+    message: '댓글이 존재하지 않습니다. ',
+    statusCode: 403,
+  },
+  PERMISSION_ERROR: {
+    message: '권한이 없습니다.  ',
+    statusCode: 401,
   },
 };

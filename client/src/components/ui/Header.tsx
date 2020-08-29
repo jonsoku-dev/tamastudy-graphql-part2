@@ -38,6 +38,9 @@ const LoggedOut = () => {
       <div>
         <button onClick={logoutFn}>LOGOUT</button>
       </div>
+      <div>
+        <Link to={'/post/create'}>CREATE POST</Link>
+      </div>
     </nav>
   );
 };
@@ -45,7 +48,14 @@ const LoggedOut = () => {
 const Header: FunctionComponent<Props> = (props) => {
   const { data } = useQuery<IsLoggedInQuery>(IsLoggedInDocument);
 
-  return <div>{data?.isLoggedIn ? <LoggedOut /> : <LoggedIn />}</div>;
+  return (
+    <div>
+      {data?.isLoggedIn ? <LoggedOut /> : <LoggedIn />}
+      <div>
+        <Link to={'/posts'}>POST</Link>
+      </div>
+    </div>
+  );
 };
 
 export default Header;

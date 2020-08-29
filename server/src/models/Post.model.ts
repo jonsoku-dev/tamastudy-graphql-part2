@@ -23,6 +23,11 @@ const postSchema = new Schema(
       type: mongoose.Schema.Types.ObjectId,
       required: true,
     },
+    comments: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+      },
+    ],
     view: {
       type: Number,
       default: 0,

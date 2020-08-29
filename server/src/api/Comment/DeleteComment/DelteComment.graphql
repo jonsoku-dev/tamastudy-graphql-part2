@@ -1,0 +1,7 @@
+type DeleteCommentResponse {
+    result: String!
+}
+
+type Mutation {
+    DeleteComment(postId: String! ,commentId: String!): DeleteCommentResponse
+}

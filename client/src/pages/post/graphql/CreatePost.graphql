@@ -1,0 +1,23 @@
+# query variables
+
+# http headers
+# {
+#   "authorization" : "Bearer token"
+# }
+
+mutation CreatePost($input: CreatePostInput!) {
+  CreatePost(input: $input) {
+    result {
+      _id
+      title
+      desc
+      view
+      user {
+        _id
+        username
+      }
+      createdAt
+      updatedAt
+    }
+  }
+}

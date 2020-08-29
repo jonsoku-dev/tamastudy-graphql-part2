@@ -8,11 +8,13 @@ const resolver = {
     GetPostList: combineResolvers(
       async (_: any, __: any, ___: any, ____: any): Promise<GetPostListResponse> => {
         try {
-          const postList = await PostModel.find().populate({
-            path: 'user',
-            model: 'User',
-            select: '_id username',
-          }); // if not exist -> []
+          const postList = await PostModel.find()
+            .populate({
+              path: 'user',
+              model: 'User',
+              select: '_id username',
+            })
+            .sort({ _id: -1 }); // if not exist -> []
           return {
             result: postList,
           };

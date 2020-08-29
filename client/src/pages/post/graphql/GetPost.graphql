@@ -1,0 +1,23 @@
+# query variables
+# {
+#   "postId": "5f4077bf81935f606abfa203"
+# }
+
+# http headers
+
+query GetPost($postId: String!) {
+  GetPost(postId: $postId) {
+    result {
+      _id
+      title
+      desc
+      view
+      user {
+        _id
+        username
+      }
+      createdAt
+      updatedAt
+    }
+  }
+}

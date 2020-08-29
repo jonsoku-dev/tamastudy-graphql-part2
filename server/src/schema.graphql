@@ -1,3 +1,60 @@
+type CreateCommentResponse {
+  result: Comment!
+}
+
+input CreateCommentInput {
+  desc: String!
+}
+
+type Mutation {
+  CreateComment(postId: String!, input: CreateCommentInput!): CreateCommentResponse
+  DeleteComment(postId: String!, commentId: String!): DeleteCommentResponse
+  EditComment(postId: String!, commentId: String!, input: EditCommentInput!): EditCommentResponse
+  CreatePost(input: CreatePostInput!): CreatePostResponse
+  DeletePost(postId: String!): DeletePostResponse
+  EditPost(postId: String!, input: EditPostInput!): EditPostResponse
+  Login(input: LoginInput!): LoginResponse
+  Register(input: RegisterInput!): RegisterResponse
+}
+
+type DeleteCommentResponse {
+  result: String!
+}
+
+type EditCommentResponse {
+  result: Comment!
+}
+
+input EditCommentInput {
+  desc: String
+}
+
+type GetCommentListResponse {
+  result: [Comment!]!
+}
+
+type Query {
+  GetCommentList(postId: String!): GetCommentListResponse
+  GetPost(postId: String!): GetPostResponse
+  GetPostList: GetPostListResponse
+  Foo(id: String!): String
+  GetUser: GetUserResponse!
+}
+
+type Comment @entity {
+  _id: String! @id @column
+  desc: String @column
+  user: UserForComment @column
+  postId: String @column
+  createdAt: String @column
+  updatedAt: String @column
+}
+
+type UserForComment {
+  _id: String!
+  username: String!
+}
+
 type CreatePostResponse {
   result: Post!
 }
@@ -5,14 +62,6 @@ type CreatePostResponse {
 input CreatePostInput {
   title: String!
   desc: String!
-}
-
-type Mutation {
-  CreatePost(input: CreatePostInput!): CreatePostResponse
-  DeletePost(postId: String!): DeletePostResponse
-  EditPost(postId: String!, input: EditPostInput!): EditPostResponse
-  Login(input: LoginInput!): LoginResponse
-  Register(input: RegisterInput!): RegisterResponse
 }
 
 type DeletePostResponse {
@@ -32,23 +81,17 @@ type GetPostResponse {
   result: Post!
 }
 
-type Query {
-  GetPost(postId: String!): GetPostResponse
-  GetPostList: GetPostListResponse
-  Foo(id: String!): String
-  GetUser: GetUserResponse!
-}
-
 type GetPostListResponse {
   result: [Post!]
 }
 
 type Post @entity {
-  _id: String! @id
+  _id: String! @id @column
   title: String @column
   desc: String @column
   view: String @column
   user: UserForPost @column
+  comments: [Comment!] @column
   createdAt: String @column
   updatedAt: String @column
 }

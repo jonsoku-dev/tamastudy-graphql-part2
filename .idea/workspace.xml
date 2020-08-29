@@ -20,7 +20,49 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f64a5511-19da-4b94-97b2-0ed4bb1d9663" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/client/src/components/CommentCard/DeleteComment.graphql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/components/CommentCard/EditComment.graphql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/components/CommentCard/index.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/components/CommentForm/CreateComment.graphql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/components/CommentForm/index.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/components/CommentList/GetCommentList.graphql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/components/CommentList/index.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/components/PostCard.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/components/ui/Spinner.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/hook/useInput.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/pages/post/CreatePost.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/pages/post/EditPost.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/pages/post/Post.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/pages/post/PostList.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/pages/post/graphql/CreatePost.graphql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/pages/post/graphql/EditPost.graphql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/pages/post/graphql/GetPost.graphql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/pages/post/graphql/GetPostList.graphql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/api/Comment/CreateComment/CreateComment.graphql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/api/Comment/CreateComment/CreateComment.resolvers.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/api/Comment/DeleteComment/DeleteComment.resolvers.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/api/Comment/DeleteComment/DelteComment.graphql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/api/Comment/EditComment/EditComment.graphql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/api/Comment/EditComment/EditComment.resolvers.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/api/Comment/GetCommentList/GetCommentList.graphql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/api/Comment/GetCommentList/GetCommentList.resolvers.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/api/Comment/shared/Comment.graphql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/models/Comment.model.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/graphql.schema.json" beforeDir="false" afterPath="$PROJECT_DIR$/client/graphql.schema.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/client/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/AppRouter.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/AppRouter.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/ui/Header.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/ui/Header.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/generated/graphql.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/generated/graphql.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/client/yarn.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/graphql.schema.json" beforeDir="false" afterPath="$PROJECT_DIR$/server/graphql.schema.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/api/Post/GetPostList/GetPostList.resolvers.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/api/Post/GetPostList/GetPostList.resolvers.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/api/Post/shared/Post.graphql" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/api/Post/shared/Post.graphql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/api/User/Register/Register.resolvers.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/api/User/Register/Register.resolvers.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/error/constants.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/error/constants.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/generated/graphql.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/generated/graphql.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/models/Post.model.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/models/Post.model.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/schema.graphql" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/schema.graphql" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -53,7 +95,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/server/src/api/Comment" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -66,7 +108,12 @@
     <property name="ts.external.directory.path" value="$PROJECT_DIR$/client/node_modules/typescript/lib" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/server/src/api/Comment" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/client/src/components/CreateComment" />
+      <recent name="$PROJECT_DIR$/client/src/components" />
       <recent name="$PROJECT_DIR$/client/src/components/ui" />
     </key>
   </component>
@@ -81,6 +128,7 @@
       <workItem from="1596210241644" duration="802000" />
       <workItem from="1596232544120" duration="7584000" />
       <workItem from="1597452114956" duration="967000" />
+      <workItem from="1598661467834" duration="11725000" />
     </task>
     <servers />
   </component>
@@ -123,10 +171,10 @@
       <screen x="0" y="23" width="5120" height="1417" />
     </state>
     <state width="1636" height="307" key="GridCell.Tab.0.right/0.23.5120.1417@0.23.5120.1417" timestamp="1596210531344" />
-    <state x="3284" y="370" key="SettingsEditor" timestamp="1596853961186">
+    <state x="3284" y="370" key="SettingsEditor" timestamp="1598672021716">
       <screen x="0" y="23" width="5120" height="1417" />
     </state>
-    <state x="3284" y="370" key="SettingsEditor/0.23.5120.1417@0.23.5120.1417" timestamp="1596853961186" />
+    <state x="3284" y="370" key="SettingsEditor/0.23.5120.1417@0.23.5120.1417" timestamp="1598672021716" />
     <state x="3492" y="467" key="Vcs.Push.Dialog.v2" timestamp="1596854967669">
       <screen x="0" y="23" width="5120" height="1417" />
     </state>

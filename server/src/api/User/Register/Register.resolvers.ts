@@ -5,7 +5,6 @@ import UserModel from '../../../models/User.model';
 const resolver = {
   Mutation: {
     Register: async (_: any, { input }: MutationRegisterArgs, __: any, ___: any): Promise<RegisterResponse> => {
-      console.log('==This is Register Resolver==');
       try {
         const existingUser = await UserModel.findOne({
           email: input.email,

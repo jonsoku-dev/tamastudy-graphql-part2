@@ -1,0 +1,26 @@
+# query variables
+# {
+#   "postId": "5f4077bf81935f606abfa203"
+# }
+
+# http headers
+# {
+#   "authorization" : "Bearer token"
+# }
+
+mutation EditPost($postId: String!, $input: EditPostInput!) {
+  EditPost(postId: $postId, input: $input) {
+    result {
+      _id
+      title
+      desc
+      view
+      user {
+        _id
+        username
+      }
+      createdAt
+      updatedAt
+    }
+  }
+}

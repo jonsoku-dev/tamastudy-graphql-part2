@@ -1,0 +1,13 @@
+type Comment @entity {
+    _id: String! @id @column
+    desc: String @column
+    user: UserForComment @column
+    postId: String @column
+    createdAt: String @column
+    updatedAt: String @column
+}
+
+type UserForComment {
+    _id: String!
+    username: String!
+}
